@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { CoreModule } from './core/core.module';
+import { AppRoutingModule } from './app-routing.module';
 
 registerLocaleData(en);
 
@@ -19,8 +21,10 @@ registerLocaleData(en);
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    CoreModule,
     HttpClientModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    AppRoutingModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
