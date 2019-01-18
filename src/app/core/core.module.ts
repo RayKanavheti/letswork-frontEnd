@@ -5,6 +5,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WelcomeModule } from '../welcome/welcome.module';
 import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import { LayoutComponent } from './layout/layout.component';
     ReactiveFormsModule,
     WelcomeModule
   ],
-  declarations: [LayoutComponent]
+  declarations: [LayoutComponent, LoginComponent]
 })
 export class CoreModule { }
