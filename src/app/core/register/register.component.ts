@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
@@ -15,5 +15,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     $.getScript('/assets/js/main.js', function() {});
     $.getScript('/assets/js/pages/auth.js', function() {});
     $.getScript('/assets/js/pages/landingv2.js', function() {});
+
 }
 }

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WelcomeModule } from '../welcome/welcome.module';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     WelcomeModule
   ],
-  declarations: [LayoutComponent, LoginComponent]
+  declarations: [LayoutComponent, LoginComponent, RegisterComponent]
 })
 export class CoreModule { }
