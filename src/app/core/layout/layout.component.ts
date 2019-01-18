@@ -10,6 +10,9 @@ export class LayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $.getScript('/assets/js/main.js', function() {});
+    $.getScript('/assets/js/pages/auth.js', function() {});
+    $.getScript('/assets/js/pages/landingv2.js', function() {});
   }
 
 }

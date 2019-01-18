@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,7 +8,7 @@ import * as $ from 'jquery';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,4 +17,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     $.getScript('/assets/js/pages/auth.js', function() {});
     $.getScript('/assets/js/pages/landingv2.js', function() {});
 }
+
+Login() {
+  this.router.navigateByUrl('/dashboard/manage');
+}
+
 }

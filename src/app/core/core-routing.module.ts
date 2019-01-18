@@ -9,7 +9,13 @@ const routes: Routes = [
     { path: '', component: HelloComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: '', component: LayoutComponent }
+    { path: '', component: LayoutComponent,
+    children: [
+        {
+          path: 'dashboard',
+          loadChildren: '../dashboard/dashboard.module#DashboardModule'
+        }
+      ] }
 ];
 
 @NgModule({

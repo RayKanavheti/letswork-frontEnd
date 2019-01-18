@@ -33,6 +33,7 @@
                         ],
                         "styles": [
                             "src/assets/css/bulma.css",
+                            "src/assets/css/dashboard.css",
                             "src/assets/css/core_deep-blue.css",
                             "src/assets/js/slick-carousel/slick.css",
                             "src/assets/js/slick-carousel/slick-theme.css",
