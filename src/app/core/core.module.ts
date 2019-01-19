@@ -7,6 +7,7 @@ import { WelcomeModule } from '../welcome/welcome.module';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from '../authentication/auth.service';
 
 
 
@@ -19,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     WelcomeModule
   ],
-  declarations: [LayoutComponent, LoginComponent, RegisterComponent]
+  declarations: [LayoutComponent, LoginComponent, RegisterComponent],
+  providers: [AuthService]
 })
 export class CoreModule { }

@@ -11,7 +11,7 @@
                 <nav class="nav">
                     <div class="container big">
                         <div class="nav-left">
-                            <a class="nav-item" href="landing-v2.html">
+                            <a class="nav-item" routerLink="/">
                                 <img src="assets/images/logos/bulkit-logo-deep-blue.png" alt="">
                             </a>
                             <!-- Sidebar trigger -->
@@ -26,10 +26,10 @@
                                 </span>
                                 </span>
                             </a> -->
-                            <a href="landing-v2-features.html" class="nav-item is-tab nav-inner is-not-mobile">
+                            <a routerLink="#" class="nav-item is-tab nav-inner is-not-mobile">
                                   Features
                               </a>
-                            <a href="landing-v2-pricing.html" class="nav-item is-tab nav-inner is-not-mobile">
+                            <a routerLink="#" class="nav-item is-tab nav-inner is-not-mobile">
                                   Pricing
                               </a>
                         </div>
@@ -41,14 +41,14 @@
                         </span>
                         <div class="nav-right nav-menu">
 
-                            <a href="landing-v2-features.html" class="nav-item is-tab nav-inner is-menu-mobile">
+                            <a routerLink="#" class="nav-item is-tab nav-inner is-menu-mobile">
                                   Features
                               </a>
-                            <a href="landing-v2-pricing.html" class="nav-item is-tab nav-inner is-menu-mobile">
+                            <a routerLink="#" class="nav-item is-tab nav-inner is-menu-mobile">
                                   Pricing
                               </a>
                             <span class="nav-item">
-                                  <a id="signup-btn" href="landing-v2-login.html" class="button button-signup btn-outlined is-bold btn-align secondary-btn rounded">
+                                  <a id="signup-btn" routerLink="/login" class="button button-signup btn-outlined is-bold btn-align secondary-btn rounded">
                                       Log in
                                   </a>
                               </span>
@@ -70,34 +70,59 @@
                     <div id="signup-card" class="animated preFadeInLeft fadeInLeft">
                         <div class="flex-card clean-signup-card">
                             <h2 class="has-text-centered text-bold">Sign up</h2>
-                            <form>
+                            <form [formGroup]="userForm">
                                 <div class="control-material is-secondary">
-                                    <input class="material-input" type="text" required>
+                                    <input formControlName="Username" class="material-input" type="text" required>
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Email *</label>
+                                    <nz-form-explain *ngIf="userForm.get('email').dirty && userForm.get('email').errors">
+                                        <ng-container *ngIf="userForm.get('email').hasError('email')">
+                                            The input is not valid E-mail!
+                                        </ng-container>
+                                        <ng-container *ngIf="userForm.get('email').hasError('required')">
+                                            Please input your E-mail!
+                                        </ng-container>
+                                    </nz-form-explain>
                                 </div>
                                 <div class="control-material is-secondary">
                                     <input class="material-input" type="text" required>
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Username *</label>
+                                    <nz-form-explain *ngIf="userForm.get('userName').dirty && userForm.get('userName').errors || userForm.get('userName').pending ">
+                                        <ng-container *ngIf="userForm.get('userName').hasError('required')">
+                                            Please input your username!
+                                        </ng-container>
+                                        <ng-container *ngIf="userForm.get('userName').pending">
+                                            Validating...
+                                        </ng-container>
+                                    </nz-form-explain>
                                 </div>
                                 <div class="control-material is-secondary">
-                                    <input class="material-input" type="text" required>
+                                    <input class="material-input" type="text" required (ngModelChange)="validateConfirmPassword()">
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Password *</label>
+                                    <nz-form-explain *ngIf="userForm.get('password').dirty&&userForm.get('password').hasError('required')">Please input your password!</nz-form-explain>
                                 </div>
                                 <div class="control-material is-secondary">
-                                    <input class="material-input" type="text" required>
+                                    <input class="material-input" type="text" formControlName="confirm" required>
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Confirm Password *</label>
+                                    <nz-form-explain *ngIf="userForm.get('confirm').dirty&&userForm.get('confirm').errors">
+                                        <ng-container *ngIf="userForm.get('confirm').hasError('required')">
+                                            Please confirm your password!
+                                        </ng-container>
+                                        <ng-container *ngIf="userForm.get('confirm').hasError('confirm')">
+                                            Password is inconsistent!
+                                        </ng-container>
+                                    </nz-form-explain>
                                 </div>
 
                                 <div class="mt-20">
-                                    <button class="button button-cta btn-align secondary-btn is-fullwidth rounded raised no-lh">Get started now</button>
+                                    <button (click)="submitForm($event, userForm.value)" [disabled]="!userForm.valid" class="button button-cta btn-align secondary-btn is-fullwidth rounded raised no-lh">Get started now</button>
                                 </div>
                             </form>
                         </div>
