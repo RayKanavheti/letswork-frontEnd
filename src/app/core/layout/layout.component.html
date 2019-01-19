@@ -1,28 +1,28 @@
 <!-- Pageloader -->
-<div class="pageloader"></div>
-<div class="infraloader is-active"></div>
+<!-- <div class="pageloader"></div>
+<div class="infraloader is-active"></div> -->
 
 <!-- Main sidebar menu -->
 <nav class="main-menu">
     <div class="main-menu-inner">
         <!-- Side icon menu -->
         <ul>
-            <li class="main-logo">
+            <li class="main-logo" style="display: flex; align-items: center; justify-content: center;">
                 <a href="dashboard.html"><img src="assets/images/logos/square-violet.svg" alt=""></a>
             </li>
-            <li class="side-icon is-active" data-child-menu="dashboard-menu">
+            <li class="side-icon is-active" data-child-menu="dashboard-menu" style="display: flex; align-items: center; justify-content: center;">
                 <i class="sl sl-icon-speedometer"></i>
             </li>
-            <li class="side-icon" data-child-menu="documents-menu">
+            <li class="side-icon" data-child-menu="documents-menu" style="display: flex; align-items: center; justify-content: center;">
                 <i class="sl sl-icon-docs"></i>
             </li>
-            <li class="side-icon" data-child-menu="business-menu">
+            <li class="side-icon" data-child-menu="business-menu" style="display: flex; align-items: center; justify-content: center;">
                 <i class="sl sl-icon-briefcase"></i>
             </li>
-            <li class="side-icon" data-child-menu="misc-menu">
+            <li class="side-icon" data-child-menu="misc-menu" style="display: flex; align-items: center; justify-content: center;">
                 <i class="sl sl-icon-graph"></i>
             </li>
-            <li class="side-icon" data-child-menu="settings-menu">
+            <li class="side-icon" data-child-menu="settings-menu" style="display: flex; align-items: center; justify-content: center;">
                 <i class="sl sl-icon-settings"></i>
             </li>
         </ul>
@@ -32,7 +32,7 @@
         <ul class="profile">
             <li>
                 <!-- Profile avatar -->
-                <a class="profile-trigger" href="javascript:void(0);">
+                <a class="profile-trigger hamburger2" href="javascript:void(0);">
                     <img class="main-menu-avatar" src="https://place-hold.it/250x250" alt="">
                     <span class="dot"></span>
                 </a>
@@ -746,7 +746,7 @@
                     </div>
                     <!-- Profile page wrapper -->
                     <div class="fab__ripple"></div>
-                    <div class="hamburger"></div>
+                    <div class="hamburger hamburger2"></div>
                 </div>
                 <!-- Profile avatar -->
             </li>
@@ -1132,13 +1132,13 @@
                     <!-- Main content -->
                     <div id="main-dashboard" class="section-wrapper">
                         <!-- Dashboard content -->
-                        <div class="columns dashboard-columns">
 
-                            <!-- YOUR CONTENT COLUMNS GO HERE -->
-                            <router-outlet>
-                            </router-outlet>
 
-                        </div>
+                        <!-- YOUR CONTENT COLUMNS GO HERE -->
+                        <router-outlet>
+                        </router-outlet>
+
+
                         <!-- /Dashboard content -->
                     </div>
                     <!-- /Main content -->

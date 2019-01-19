@@ -33,7 +33,6 @@
                         ],
                         "styles": [
                             "src/assets/css/bulma.css",
-                            "src/assets/css/dashboard.css",
                             "src/assets/css/core_deep-blue.css",
                             "src/assets/js/slick-carousel/slick.css",
                             "src/assets/js/slick-carousel/slick-theme.css",
@@ -56,7 +55,8 @@
                             "src/assets/js/vivus/vivus.min.js",
                             "src/assets/js/scrollreveal/scrollreveal.min.js",
                             "src/assets/js/main.js",
-                            "src/assets/js/pages/landingv2.js"
+                            "src/assets/js/pages/landingv2.js",
+                            "src/assets/js/pages/components-quickview.js"
                         ]
                     },
                     "configurations": {

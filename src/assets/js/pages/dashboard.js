@@ -4,20 +4,20 @@
 Dashboard core JS file 
 ========================================================================== */
 
-$(document).ready(function($){
+$(document).ready(function($) {
 
     "use strict";
 
     //Mobile menu toggle
     if ($('.nav-toggle').length) {
-        $('.nav-toggle').on("click", function(){
+        $('.nav-toggle').on("click", function() {
             $(this).toggleClass('is-active');
             $(this).siblings('.nav-menu').toggleClass('is-active');
         })
     }
 
     //Main menu icon behaviour and push sidebar
-    $('.side-icon').on("click", function(){
+    $('.side-icon').on("click", function() {
         $('.side-icon.is-active').removeClass('is-active');
         $(this).addClass('is-active');
         $('.menu-wrapper .icon-box-toggle').addClass('active');
@@ -27,7 +27,7 @@ $(document).ready(function($){
         $('.reader-switch label').addClass('is-disabled');
     })
 
-    $('.menu-wrapper').on("click", function(){
+    $('.menu-wrapper').on("click", function() {
         $('.child-menu').toggleClass('is-sidebar-translated');
         $('.dashboard-nav, #dashboard-wrapper').toggleClass('is-pushed');
         //enable reader mode switch when sidebar is closed
@@ -40,50 +40,49 @@ $(document).ready(function($){
     });
 
     //Sidebar menu submenu transitions
-    $(".sidebar-menu > li.have-children a.parent-link").on("click", function(i){
+    $(".sidebar-menu > li.have-children a.parent-link").on("click", function(i) {
         i.preventDefault();
-        if( ! $(this).parent().hasClass("active") ){
+        if (!$(this).parent().hasClass("active")) {
             $(".sidebar-menu li ul").slideUp();
             $(this).next().slideToggle();
             $(".sidebar-menu li").removeClass("active");
             $(this).parent().addClass("active");
-        }
-        else{
+        } else {
             $(this).next().slideToggle();
             $(".sidebar-menu li").removeClass("active");
         }
     });
 
     //Data child menu setup
-    $('.main-menu ul li.side-icon').on("click", function(){
+    $('.main-menu ul li.side-icon').on("click", function() {
         var menu_id = $(this).attr('data-child-menu');
         $('.sidebar-menu.is-active').removeClass('is-active');
         $("#" + menu_id).addClass('is-active');
     })
 
     //Reader mode (only for mobile)
-    $('#reader-mode-toggle').on("click", function(){
+    $('#reader-mode-toggle').on("click", function() {
         $('body').toggleClass('reader-mode');
     })
 
     //Navigation Tabs
-    $('.navigation-tabs ul li').on("click", function(){
+    $('.navigation-tabs ul li').on("click", function() {
         var tab_id = $(this).attr('data-tab');
 
         $(this).siblings('li').removeClass('is-active');
         $(this).closest('.navigation-tabs').children('.navtab-content').removeClass('is-active');
 
         $(this).addClass('is-active');
-        $("#"+tab_id).addClass('is-active');
+        $("#" + tab_id).addClass('is-active');
     })
 
     //Ripple effect
     if ($('.ripple').length) {
-        (function (window, $) {
+        (function(window, $) {
 
             $(function() {
 
-                $('.ripple').on('click', function (event) {
+                $('.ripple').on('click', function(event) {
                     event.preventDefault();
 
                     var $div = $('<div/>'),
@@ -100,13 +99,13 @@ $(document).ready(function($){
                     $ripple.css("width", $(this).height());
                     $div
                         .css({
-                        top: yPos - ($ripple.height()/2),
-                        left: xPos - ($ripple.width()/2),
-                        background: $(this).data("ripple-color")
-                    }) 
+                            top: yPos - ($ripple.height() / 2),
+                            left: xPos - ($ripple.width() / 2),
+                            background: $(this).data("ripple-color")
+                        })
                         .appendTo($(this));
 
-                    window.setTimeout(function(){
+                    window.setTimeout(function() {
                         $div.remove();
                     }, 2000);
                 });
@@ -119,11 +118,11 @@ $(document).ready(function($){
     //Custom quickview initialization with data attributes
     if ($('.custom-quickview').length) {
         var quickID;
-        $('.quickview-trigger').on("click", function(){
+        $('.quickview-trigger').on("click", function() {
             quickID = $(this).attr('data-quickview');
             $('#' + quickID).addClass('is-active');
         })
-        $('.quickview-close').on("click", function(){
+        $('.quickview-close').on("click", function() {
             quickID = $(this).attr('data-quickview');
             $('#' + quickID).removeClass('is-active');
         })
@@ -175,7 +174,7 @@ $(document).ready(function($){
     });
 
     //Adding the styled checkbox styles
-    $( ":checkbox" ).addClass('styled-checkbox');
+    $(":checkbox").addClass('styled-checkbox');
 
     //Initialize tooltips
     if ($('[data-toggle="tooltip"]').length) {
@@ -192,7 +191,7 @@ $(document).ready(function($){
     $('#busySwitch').on('click', function() {
         $('.main-menu-avatar + .dot').toggleClass('is-busy');
         //Launch activation notification
-        if ($(this).is( ":checked" )) {
+        if ($(this).is(":checked")) {
             iziToast.show({
                 theme: 'dark',
                 backgroundColor: '#eda514',
@@ -208,10 +207,10 @@ $(document).ready(function($){
                 image: 'https://place-hold.it/250x250',
                 imageWidth: 70,
                 layout: 2,
-                onClosing: function(){
+                onClosing: function() {
                     console.info('onClosing');
                 },
-                onClosed: function(instance, toast, closedBy){
+                onClosed: function(instance, toast, closedBy) {
                     console.info('Closed | closedBy: ' + closedBy);
                 },
                 iconColor: '#fff'
@@ -233,10 +232,10 @@ $(document).ready(function($){
                 image: 'https://place-hold.it/250x250',
                 imageWidth: 70,
                 layout: 2,
-                onClosing: function(){
+                onClosing: function() {
                     console.info('onClosing');
                 },
-                onClosed: function(instance, toast, closedBy){
+                onClosed: function(instance, toast, closedBy) {
                     console.info('Closed | closedBy: ' + closedBy);
                 },
                 iconColor: '#fff'
@@ -269,20 +268,20 @@ $(document).ready(function($){
 
     //Profile Fab menu
     $('#profile-fab-trigger').on('click', function() {
-        if ($(this).children('.icon-box-toggle').hasClass('is-active')) {
-            $(this).children('.icon-box-toggle').removeClass('is-active');
-            $('.profile-fab').toggleClass('is-open');
-        } else {
-            $(this).children('.icon-box-toggle').addClass('is-active');
-            $('.profile-fab').toggleClass('is-open');
-        }
-    })
-    //Close fab on menu click
+            if ($(this).children('.icon-box-toggle').hasClass('is-active')) {
+                $(this).children('.icon-box-toggle').removeClass('is-active');
+                $('.profile-fab').toggleClass('is-open');
+            } else {
+                $(this).children('.icon-box-toggle').addClass('is-active');
+                $('.profile-fab').toggleClass('is-open');
+            }
+        })
+        //Close fab on menu click
     $('#show-details, #show-team, #show-notifications').on('click', function() {
-        $('.profile-fab').removeClass('is-open');
-        $('.pop-fab .icon-box-toggle').removeClass('active');
-    })
-    //Edit profile toggle
+            $('.profile-fab').removeClass('is-open');
+            $('.pop-fab .icon-box-toggle').removeClass('active');
+        })
+        //Edit profile toggle
     $('.edit-trigger').on('click', function() {
         $('#profile-view').toggleClass('is-hidden');
         $('#edit-view').toggleClass('is-hidden');
@@ -304,17 +303,17 @@ $(document).ready(function($){
 
     //Pop Dropdowns
     $('.drop-pop').on('click', function(event) {
-        event.stopPropagation();
-        $('.drop-wrapper').hide();
-        $(this).children('.drop-wrapper').toggle();
-    })
-    //Close pop dropdowns on click outside
+            event.stopPropagation();
+            $('.drop-wrapper').hide();
+            $(this).children('.drop-wrapper').toggle();
+        })
+        //Close pop dropdowns on click outside
     $(window).on('click', function(event) {
-        if(!$(event.target).find('.drop-wrapper').length) {
-            if($('.drop-wrapper').is(":visible")) {
+        if (!$(event.target).find('.drop-wrapper').length) {
+            if ($('.drop-wrapper').is(":visible")) {
                 $('.drop-wrapper').hide();
             }
-        } 
+        }
     });
 
     //FAB
@@ -326,20 +325,34 @@ $(document).ready(function($){
         } else {
             $('.js-hamburger').addClass('is-active');
             //wait 700ms before adding the fixed class to the body to prevent unpleasant effects
-            setTimeout(function(){
+            setTimeout(function() {
                 $('body').addClass('is-fixed');
             }, 700);
         }
     });
 
+
+
+    $('.hamburger2').on('click', function() {
+        if ($('.js-hamburger').hasClass('is-active')) {
+            $('.js-hamburger').removeClass('is-active');
+            $('body').removeClass('is-fixed');
+        } else {
+            $('.js-hamburger').addClass('is-active');
+            //wait 700ms before adding the fixed class to the body to prevent unpleasant effects
+            setTimeout(function() {
+                $('body').addClass('is-fixed');
+            }, 700);
+        }
+    });
     //Fake chat messages simulation
     $('#chat-input').on('keypress', function(e) {
         var key = e.which;
-        if(key == 13)  // the enter key code
+        if (key == 13) // the enter key code
         {
             //Post new chat message
             var text = $('#chat-input').val();
-            $('#message-container').append('<div class="chat-message to"><div class="bubble-wrapper"><div class="timestamp">time</div><div class="chat-bubble">' + text + '</div></div><img class="gelatine" src="assets/images/avatars/helen.jpg" alt=""></div>'); 
+            $('#message-container').append('<div class="chat-message to"><div class="bubble-wrapper"><div class="timestamp">time</div><div class="chat-bubble">' + text + '</div></div><img class="gelatine" src="assets/images/avatars/helen.jpg" alt=""></div>');
 
             //code to empty textarea after submit
             var empty = "";
@@ -348,7 +361,7 @@ $(document).ready(function($){
             //prevents the keypress event to trigger a line jump
             return false;
         }
-    }); 
+    });
 
     //Media card background images
     if ($('.media-card-image').length) {
@@ -356,9 +369,9 @@ $(document).ready(function($){
             var mediaCardImage = $(this).attr('data-background');
             if (mediaCardImage !== undefined) {
                 $(this).css('background-image', 'url(' + mediaCardImage + ')');
-            } 
-        }
-    )}
+            }
+        })
+    }
 
     //Svg vector map
     if ($('#vmap').length) {
@@ -444,134 +457,134 @@ $(document).ready(function($){
     Peity charts
     ========================================================================== */
 
-    //Small bar chart widget
-    $(".small-bars").peity("bar", {
-        fill: ["#fff"],
-        height: 30,
-        width: '15%'
-    })
+    // //Small bar chart widget
+    // $(".small-bars").peity("bar", {
+    //     fill: ["#fff"],
+    //     height: 30,
+    //     width: '15%'
+    // })
 
-    //Stat widget bars
-    $(".widget-bars").peity("bar", {
-        fill: ["#fff"],
-        height: 45,
-        width: '100%'
-    })
+    // //Stat widget bars
+    // $(".widget-bars").peity("bar", {
+    //     fill: ["#fff"],
+    //     height: 45,
+    //     width: '100%'
+    // })
 
-    //Projects widget pies
-    $(".project-pies").peity("pie", {
-        fill: ["#00D1B2", "#999"],
-        innerRadius: null,
-        radius: 8,
-        height: 32,
-        width: '100%'
-    })
+    // //Projects widget pies
+    // $(".project-pies").peity("pie", {
+    //     fill: ["#00D1B2", "#999"],
+    //     innerRadius: null,
+    //     radius: 8,
+    //     height: 32,
+    //     width: '100%'
+    // })
 
-    //Activity widget line
-    $(".widget-lines").peity("line", {
-        fill: ["#fff"],
-        stroke: "#fff",
-        height: 45,
-        width: '100%'
-    })
+    // //Activity widget line
+    // $(".widget-lines").peity("line", {
+    //     fill: ["#fff"],
+    //     stroke: "#fff",
+    //     height: 45,
+    //     width: '100%'
+    // })
 
-    //Best managers widget donuts
-    $(".manager-pies").peity("pie", {
-        fill: ["#00D1B2", "#fff"],
-        innerRadius: null,
-        radius: 8,
-        height: 45,
-        width: '100%'
-    })
+    // //Best managers widget donuts
+    // $(".manager-pies").peity("pie", {
+    //     fill: ["#00D1B2", "#fff"],
+    //     innerRadius: null,
+    //     radius: 8,
+    //     height: 45,
+    //     width: '100%'
+    // })
 
-    //Feed page updating chart
-    var updatingChart = $(".updating-chart").peity("line", { 
-        width: '100%',
-        height: 40,
-        fill: "#8c19ff",
-        stroke: "#fff",
-        strokeWidth: 2
-    })
+    // //Feed page updating chart
+    // var updatingChart = $(".updating-chart").peity("line", { 
+    //     width: '100%',
+    //     height: 40,
+    //     fill: "#8c19ff",
+    //     stroke: "#fff",
+    //     strokeWidth: 2
+    // })
 
-    setInterval(function() {
-        var random = Math.round(Math.random() * 10)
-        var values = updatingChart.text().split(",")
-        values.shift()
-        values.push(random)
+    // setInterval(function() {
+    //     var random = Math.round(Math.random() * 10)
+    //     var values = updatingChart.text().split(",")
+    //     values.shift()
+    //     values.push(random)
 
-        updatingChart
-            .text(values.join(","))
-            .change()
-    }, 1000)
+    //     updatingChart
+    //         .text(values.join(","))
+    //         .change()
+    // }, 1000)
 
-    //Peity js page charts
-    if ($('.peityjs-pie, .peityjs-pieAlt, .peityjs-donut, .peityjs-donutAlt, .peityjs-line, .peityjs-bar, .peityjs-line-updating').length) {
+    // //Peity js page charts
+    // if ($('.peityjs-pie, .peityjs-pieAlt, .peityjs-donut, .peityjs-donutAlt, .peityjs-line, .peityjs-bar, .peityjs-line-updating').length) {
 
-        //Peity pies
-        $(".peityjs-pie").peity("pie", { 
-            height: 55, 
-            width: 55,
-            fill: ["#00D1B2", "#999"],
-        })
+    //     //Peity pies
+    //     $(".peityjs-pie").peity("pie", { 
+    //         height: 55, 
+    //         width: 55,
+    //         fill: ["#00D1B2", "#999"],
+    //     })
 
-        $(".peityjs-pieAlt").peity("pie", { 
-            height: 55, 
-            width: 55,
-            fill: ["#00D1B2", "#7F00FF", "#536dfe", "#999"],
-        })
-        //Peity donuts
-        $(".peityjs-donut").peity("donut", { 
-            height: 55, 
-            width: 55,
-            fill: ["#00D1B2", "#999"],
-            innerRadius: 20,
-        })
+    //     $(".peityjs-pieAlt").peity("pie", { 
+    //         height: 55, 
+    //         width: 55,
+    //         fill: ["#00D1B2", "#7F00FF", "#536dfe", "#999"],
+    //     })
+    //     //Peity donuts
+    //     $(".peityjs-donut").peity("donut", { 
+    //         height: 55, 
+    //         width: 55,
+    //         fill: ["#00D1B2", "#999"],
+    //         innerRadius: 20,
+    //     })
 
-        $(".peityjs-donutAlt").peity("donut", { 
-            height: 55, 
-            width: 55,
-            fill: ["#00D1B2", "#7F00FF", "#536dfe", "#999"],
-        })
-        //Peity lines
-        $(".peityjs-line").peity("line", { 
-            delimiter: ",",
-            height: 25,
-            max: null,
-            min: 0,
-            strokeWidth: 1,
-            width: '100%'
-        })
-        //Peity bars
-        $(".peityjs-bar").peity("bar", { 
-            delimiter: ",",
-            height: 25,
-            max: null,
-            min: 0,
-            padding: 0.1,
-            width: '100%'
-        })
+    //     $(".peityjs-donutAlt").peity("donut", { 
+    //         height: 55, 
+    //         width: 55,
+    //         fill: ["#00D1B2", "#7F00FF", "#536dfe", "#999"],
+    //     })
+    //     //Peity lines
+    //     $(".peityjs-line").peity("line", { 
+    //         delimiter: ",",
+    //         height: 25,
+    //         max: null,
+    //         min: 0,
+    //         strokeWidth: 1,
+    //         width: '100%'
+    //     })
+    //     //Peity bars
+    //     $(".peityjs-bar").peity("bar", { 
+    //         delimiter: ",",
+    //         height: 25,
+    //         max: null,
+    //         min: 0,
+    //         padding: 0.1,
+    //         width: '100%'
+    //     })
 
-        //Updating charts
-        var updatingChart = $(".peityjs-line-updating").peity("line", { 
-            delimiter: ",",
-            height: 50,
-            max: null,
-            min: 0,
-            strokeWidth: 1,
-            width: '100%'
-        })
+    //     //Updating charts
+    //     var updatingChart = $(".peityjs-line-updating").peity("line", { 
+    //         delimiter: ",",
+    //         height: 50,
+    //         max: null,
+    //         min: 0,
+    //         strokeWidth: 1,
+    //         width: '100%'
+    //     })
 
-        setInterval(function() {
-            var random = Math.round(Math.random() * 10)
-            var values = updatingChart.text().split(",")
-            values.shift()
-            values.push(random)
+    //     setInterval(function() {
+    //         var random = Math.round(Math.random() * 10)
+    //         var values = updatingChart.text().split(",")
+    //         values.shift()
+    //         values.push(random)
 
-            updatingChart
-                .text(values.join(","))
-                .change()
-        }, 1000)
-    }
+    //         updatingChart
+    //             .text(values.join(","))
+    //             .change()
+    //     }, 1000)
+    // }
 
     /* ==========================================================================
     Chart js charts
@@ -608,7 +621,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(0, 0, 0, 0)",
-                        } ,
+                        },
                         scaleLabel: {
                             display: false,
                         },
@@ -629,6 +642,7 @@ $(document).ready(function($){
                                     { divider: 1e6, suffix: 'M' },
                                     { divider: 1e3, suffix: 'k' }
                                 ];
+
                                 function formatNumber(n) {
                                     for (var i = 0; i < ranges.length; i++) {
                                         if (n >= ranges[i].divider) {
@@ -671,12 +685,12 @@ $(document).ready(function($){
     }
 
     if ($('#doughnutChart').length) {
-        var doughnutDashChart = new Chart(ctx3,{
+        var doughnutDashChart = new Chart(ctx3, {
             type: 'doughnut',
 
             data: {
                 datasets: [{
-                    data: [57, 21, 22,],
+                    data: [57, 21, 22, ],
                     backgroundColor: ["rgba(127, 0, 255,1)", "rgba(0, 209, 178,0.6)"],
                 }],
                 labels: [
@@ -700,13 +714,11 @@ $(document).ready(function($){
             type: 'bar',
             data: {
                 labels: ["France", "Germany", "UK", "spain", "Belgium"],
-                datasets: [
-                    {
-                        label: "Last month Sales ($)",
-                        backgroundColor: ["#00D1B2", "#7F00FF","#536dfe","#039BE5","#999"],
-                        data: [12478,15267,11734,19784,12433]
-                    }
-                ]
+                datasets: [{
+                    label: "Last month Sales ($)",
+                    backgroundColor: ["#00D1B2", "#7F00FF", "#536dfe", "#039BE5", "#999"],
+                    data: [12478, 15267, 11734, 19784, 12433]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
@@ -721,7 +733,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(0, 0, 0, 0)",
-                        } ,
+                        },
                         scaleLabel: {
                             display: false,
                         },
@@ -742,6 +754,7 @@ $(document).ready(function($){
                                     { divider: 1e6, suffix: 'M' },
                                     { divider: 1e3, suffix: 'k' }
                                 ];
+
                                 function formatNumber(n) {
                                     for (var i = 0; i < ranges.length; i++) {
                                         if (n >= ranges[i].divider) {
@@ -771,9 +784,9 @@ $(document).ready(function($){
         new Chart(document.getElementById("cjs-lineChart"), {
             type: 'line',
             data: {
-                labels: ['jan','feb','mar','apr','jun','jul','aug','sep','oct','nov'],
-                datasets: [{ 
-                    data: [7,6,2,3,1,3,5,9,3,6],
+                labels: ['jan', 'feb', 'mar', 'apr', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov'],
+                datasets: [{
+                    data: [7, 6, 2, 3, 1, 3, 5, 9, 3, 6],
                     label: "Deals lost",
                     borderColor: "#rgba(127, 0, 255,1)",
                     fill: true,
@@ -781,8 +794,8 @@ $(document).ready(function($){
                     borderColor: 'rgba(127, 0, 255,1)',
                     pointBackgroundColor: '#fff',
                     pointBorderColor: 'rgba(127, 0, 255,1)',
-                }, { 
-                    data: [14,12,8,9,13,12,18,16,13,7],
+                }, {
+                    data: [14, 12, 8, 9, 13, 12, 18, 16, 13, 7],
                     label: "Deals won",
                     borderColor: "#rgba(0, 209, 178,1)",
                     fill: true,
@@ -790,8 +803,8 @@ $(document).ready(function($){
                     borderColor: 'rgba(0, 209, 178,1)',
                     pointBackgroundColor: '#fff',
                     pointBorderColor: 'rgba(0, 209, 178,1)',
-                }, { 
-                    data: [1,3,0,0,0,5,1,0,0,1],
+                }, {
+                    data: [1, 3, 0, 0, 0, 5, 1, 0, 0, 1],
                     label: "Deals canceled",
                     borderColor: "#rgba(153, 153, 153,1)",
                     fill: true,
@@ -799,8 +812,7 @@ $(document).ready(function($){
                     borderColor: 'rgba(153, 153, 153,1)',
                     pointBackgroundColor: '#fff',
                     pointBorderColor: 'rgba(153, 153, 153,1)',
-                },
-                          ]
+                }, ]
             },
             options: {
                 maintainAspectRatio: false,
@@ -822,7 +834,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(153, 153, 153, 0.1)",
-                        } ,
+                        },
                         scaleLabel: {
                             display: true,
                         },
@@ -866,8 +878,8 @@ $(document).ready(function($){
                 labels: ["Paid invoices", "Rejected invoices", "Pending invoices", "Overdue invoices"],
                 datasets: [{
                     label: "",
-                    backgroundColor: ["#00D1B2", "#999","#7F00FF","#536dfe"],
-                    data: [421,49,208,39]
+                    backgroundColor: ["#00D1B2", "#999", "#7F00FF", "#536dfe"],
+                    data: [421, 49, 208, 39]
                 }]
             },
             options: {
@@ -909,25 +921,23 @@ $(document).ready(function($){
             type: 'radar',
             data: {
                 labels: ["Html", "CSS", "React js", "Angular", "Vue js"],
-                datasets: [
-                    {
-                        label: "Marc Walters",
-                        fill: true,
-                        backgroundColor: "rgba(0, 209, 178,0.6)",
-                        borderColor: "rgba(0, 209, 178,1)",
-                        pointBorderColor: "rgba(0, 209, 178,1)",
-                        pointBackgroundColor: "#fff",
-                        data: [98,100,15,0,35]
-                    }, {
-                        label: "John Doe",
-                        fill: true,
-                        backgroundColor: "rgba(127, 0, 255,0.6)",
-                        borderColor: "rgba(127, 0, 255,1)",
-                        pointBorderColor: "rgba(127, 0, 255,1)",
-                        pointBackgroundColor: "#fff",
-                        data: [50,45,85,63,98]
-                    }
-                ]
+                datasets: [{
+                    label: "Marc Walters",
+                    fill: true,
+                    backgroundColor: "rgba(0, 209, 178,0.6)",
+                    borderColor: "rgba(0, 209, 178,1)",
+                    pointBorderColor: "rgba(0, 209, 178,1)",
+                    pointBackgroundColor: "#fff",
+                    data: [98, 100, 15, 0, 35]
+                }, {
+                    label: "John Doe",
+                    fill: true,
+                    backgroundColor: "rgba(127, 0, 255,0.6)",
+                    borderColor: "rgba(127, 0, 255,1)",
+                    pointBorderColor: "rgba(127, 0, 255,1)",
+                    pointBackgroundColor: "#fff",
+                    data: [50, 45, 85, 63, 98]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
@@ -949,7 +959,7 @@ $(document).ready(function($){
                         fontColor: '#999',
                         autoSkip: true,
                         maxTicksLimit: 4,
-                    } 
+                    }
                 },
                 tooltips: {
                     backgroundColor: "rgba(68, 79, 96,0.7)",
@@ -968,13 +978,11 @@ $(document).ready(function($){
             type: 'polarArea',
             data: {
                 labels: ["Paid invoices", "Rejected invoices", "Pending invoices", "Overdue invoices"],
-                datasets: [
-                    {
-                        label: "",
-                        backgroundColor: ["#00D1B2", "#999","#7F00FF","#536dfe"],
-                        data: [108,49,89,39]
-                    }
-                ]
+                datasets: [{
+                    label: "",
+                    backgroundColor: ["#00D1B2", "#999", "#7F00FF", "#536dfe"],
+                    data: [108, 49, 89, 39]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
@@ -1004,7 +1012,7 @@ $(document).ready(function($){
                         fontColor: '#999',
                         autoSkip: false,
                         maxTicksLimit: 0,
-                    } 
+                    }
                 },
                 layout: {
                     padding: {
@@ -1022,8 +1030,8 @@ $(document).ready(function($){
                 labels: ["Paid invoices", "Rejected invoices", "Pending invoices", "Overdue invoices"],
                 datasets: [{
                     label: "",
-                    backgroundColor: ["#00D1B2", "#999","#7F00FF","#536dfe"],
-                    data: [421,49,208,39]
+                    backgroundColor: ["#00D1B2", "#999", "#7F00FF", "#536dfe"],
+                    data: [421, 49, 208, 39]
                 }]
             },
             options: {
@@ -1066,13 +1074,11 @@ $(document).ready(function($){
             type: 'horizontalBar',
             data: {
                 labels: ["France", "Germany", "UK", "spain", "Belgium"],
-                datasets: [
-                    {
-                        label: "Last month Sales ($)",
-                        backgroundColor: ["#00D1B2", "#7F00FF","#536dfe","#039BE5","#999"],
-                        data: [12478,15267,11734,19784,12433]
-                    }
-                ]
+                datasets: [{
+                    label: "Last month Sales ($)",
+                    backgroundColor: ["#00D1B2", "#7F00FF", "#536dfe", "#039BE5", "#999"],
+                    data: [12478, 15267, 11734, 19784, 12433]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
@@ -1087,7 +1093,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(0, 0, 0, 0)",
-                        } ,
+                        },
                         scaleLabel: {
                             display: true,
                         },
@@ -1101,6 +1107,7 @@ $(document).ready(function($){
                                     { divider: 1e6, suffix: 'M' },
                                     { divider: 1e3, suffix: 'k' }
                                 ];
+
                                 function formatNumber(n) {
                                     for (var i = 0; i < ranges.length; i++) {
                                         if (n >= ranges[i].divider) {
@@ -1118,7 +1125,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(0, 0, 0, 0)",
-                        }, 
+                        },
                     }],
                 },
                 tooltips: {
@@ -1138,17 +1145,15 @@ $(document).ready(function($){
             type: 'bar',
             data: {
                 labels: ["jan", "feb", "mar", "apr"],
-                datasets: [
-                    {
-                        label: "Paid",
-                        backgroundColor: "#7F00FF",
-                        data: [154,134,189,161]
-                    }, {
-                        label: "Pending",
-                        backgroundColor: "#00D1B2",
-                        data: [121,92,142,112]
-                    }
-                ]
+                datasets: [{
+                    label: "Paid",
+                    backgroundColor: "#7F00FF",
+                    data: [154, 134, 189, 161]
+                }, {
+                    label: "Pending",
+                    backgroundColor: "#00D1B2",
+                    data: [121, 92, 142, 112]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
@@ -1178,7 +1183,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(0, 0, 0, 0)",
-                        } ,
+                        },
                         scaleLabel: {
                             display: true,
                         },
@@ -1216,7 +1221,7 @@ $(document).ready(function($){
                     label: "Pending invoices",
                     type: "line",
                     borderColor: "#999",
-                    data: [9,5,3,8],
+                    data: [9, 5, 3, 8],
                     fill: false,
                     pointBorderColor: "#999",
                     pointBackgroundColor: "#fff",
@@ -1224,7 +1229,7 @@ $(document).ready(function($){
                     label: "Paid invoices",
                     type: "line",
                     borderColor: "#3e95cd",
-                    data: [42,49,35,85],
+                    data: [42, 49, 35, 85],
                     fill: false,
                     pointBorderColor: "#3e95cd",
                     pointBackgroundColor: "#fff",
@@ -1232,15 +1237,14 @@ $(document).ready(function($){
                     label: "Won deals",
                     type: "bar",
                     backgroundColor: "rgba(0, 209, 178,0.7)",
-                    data: [51,48,32,78],
+                    data: [51, 48, 32, 78],
                 }, {
                     label: "Lost deals",
                     type: "bar",
                     backgroundColor: "rgba(127, 0, 255,0.7)",
                     backgroundColorHover: "#3e95cd",
-                    data: [12,9,8,14]
-                }
-                          ]
+                    data: [12, 9, 8, 14]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
@@ -1270,7 +1274,7 @@ $(document).ready(function($){
                         //stacked: true,
                         gridLines: {
                             color: "rgba(0, 0, 0, 0)",
-                        } ,
+                        },
                         scaleLabel: {
                             display: true,
                         },
@@ -1304,54 +1308,52 @@ $(document).ready(function($){
             type: 'bubble',
             data: {
                 labels: "Africa",
-                datasets: [
-                    {
-                        label: ["Invoice.io"],
-                        backgroundColor: "rgba(83, 109, 254,0.7)",
-                        borderColor: "rgba(83, 109, 254,1)",
-                        data: [{
-                            x: 528,
-                            y: 31,
-                            r: 15
-                        }]
-                    }, {
-                        label: ["Mortimer & Sons"],
-                        backgroundColor: "rgba(0, 209, 178,0.7)",
-                        borderColor: "rgba(0, 209, 178,1)",
-                        data: [{
-                            x: 978,
-                            y: 22,
-                            r: 10
-                        }]
-                    }, {
-                        label: ["Techify Ltd."],
-                        backgroundColor: "rgba(153,153,153,0.7)",
-                        borderColor: "rgba(153,153,153,1)",
-                        data: [{
-                            x: 341,
-                            y: 26,
-                            r: 15
-                        }]
-                    }, {
-                        label: ["Someco Inc."],
-                        backgroundColor: "rgba(127, 0, 255,0.7)",
-                        borderColor: "rgba(127, 0, 255,1)",
-                        data: [{
-                            x: 427,
-                            y: 15,
-                            r: 15
-                        }]
-                    }
-                ]
+                datasets: [{
+                    label: ["Invoice.io"],
+                    backgroundColor: "rgba(83, 109, 254,0.7)",
+                    borderColor: "rgba(83, 109, 254,1)",
+                    data: [{
+                        x: 528,
+                        y: 31,
+                        r: 15
+                    }]
+                }, {
+                    label: ["Mortimer & Sons"],
+                    backgroundColor: "rgba(0, 209, 178,0.7)",
+                    borderColor: "rgba(0, 209, 178,1)",
+                    data: [{
+                        x: 978,
+                        y: 22,
+                        r: 10
+                    }]
+                }, {
+                    label: ["Techify Ltd."],
+                    backgroundColor: "rgba(153,153,153,0.7)",
+                    borderColor: "rgba(153,153,153,1)",
+                    data: [{
+                        x: 341,
+                        y: 26,
+                        r: 15
+                    }]
+                }, {
+                    label: ["Someco Inc."],
+                    backgroundColor: "rgba(127, 0, 255,0.7)",
+                    borderColor: "rgba(127, 0, 255,1)",
+                    data: [{
+                        x: 427,
+                        y: 15,
+                        r: 15
+                    }]
+                }]
             },
             options: {
                 maintainAspectRatio: false,
                 title: {
                     display: false,
                     text: ''
-                }, 
+                },
                 scales: {
-                    yAxes: [{ 
+                    yAxes: [{
                         scaleLabel: {
                             display: false,
                             labelString: ""
@@ -1366,7 +1368,7 @@ $(document).ready(function($){
                             maxTicksLimit: 6,
                         }
                     }],
-                    xAxes: [{ 
+                    xAxes: [{
                         scaleLabel: {
                             display: false,
                             labelString: ""
@@ -1450,7 +1452,7 @@ $(document).ready(function($){
                     "type": "timeseries",
                     "tick": {
                         "format": "%Y-%m"
-                        //"format": "%Y-%m-%d"
+                            //"format": "%Y-%m-%d"
                     }
                 }
             },
@@ -1495,8 +1497,7 @@ $(document).ready(function($){
                     "Pending": "#536dfe"
                 },
                 "regions": {
-                    "Paid": [
-                        {
+                    "Paid": [{
                             "start": 1,
                             "end": 2,
                             "style": "dashed"
@@ -1505,11 +1506,9 @@ $(document).ready(function($){
                             "start": 3
                         }
                     ],
-                    "Pending": [
-                        {
-                            "end": 3
-                        }
-                    ]
+                    "Pending": [{
+                        "end": 3
+                    }]
                 }
             },
             "size": {
@@ -1517,7 +1516,7 @@ $(document).ready(function($){
             },
             "bindto": "#billboard-lineRegionChart"
         })
-        }
+    }
 
     //Billboard js page step chart
     if ($('#billboard-stepChart').length) {
@@ -1620,11 +1619,9 @@ $(document).ready(function($){
             },
             "grid": {
                 "y": {
-                    "lines": [
-                        {
-                            "value": 0
-                        }
-                    ]
+                    "lines": [{
+                        "value": 0
+                    }]
                 }
             },
             "size": {
@@ -1686,9 +1683,9 @@ $(document).ready(function($){
                     "Pending tasks": "#7F00FF",
                 },
                 "type": "pie",
-                "onclick": function (d, i) { console.log("onclick", d, i); },
-                "onover": function (d, i) { console.log("onover", d, i); },
-                "onout": function (d, i) { console.log("onout", d, i); }
+                "onclick": function(d, i) { console.log("onclick", d, i); },
+                "onover": function(d, i) { console.log("onover", d, i); },
+                "onout": function(d, i) { console.log("onout", d, i); }
             },
             "size": {
                 "height": 260,
@@ -1710,9 +1707,9 @@ $(document).ready(function($){
                     "Pending tasks": "#7F00FF",
                 },
                 "type": "donut",
-                "onclick": function (d, i) { console.log("onclick", d, i); },
-                "onover": function (d, i) { console.log("onover", d, i); },
-                "onout": function (d, i) { console.log("onout", d, i); }
+                "onclick": function(d, i) { console.log("onclick", d, i); },
+                "onover": function(d, i) { console.log("onover", d, i); },
+                "onout": function(d, i) { console.log("onout", d, i); }
             },
             "donut": {
                 "title": ""
@@ -1732,9 +1729,9 @@ $(document).ready(function($){
                     ["Completed", 91.4]
                 ],
                 "type": "gauge",
-                "onclick": function (d, i) { console.log("onclick", d, i); },
-                "onover": function (d, i) { console.log("onover", d, i); },
-                "onout": function (d, i) { console.log("onout", d, i); }
+                "onclick": function(d, i) { console.log("onclick", d, i); },
+                "onover": function(d, i) { console.log("onover", d, i); },
+                "onout": function(d, i) { console.log("onout", d, i); }
             },
             "gauge": {},
             "color": {
@@ -1802,4 +1799,3 @@ $(document).ready(function($){
     }
 
 })
-
