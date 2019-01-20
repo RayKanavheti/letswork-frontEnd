@@ -29,7 +29,7 @@ export class AuthService {
 //   }
 
   Register(user: IUser): Observable<IUser> {
-    const url = `${this.BASE_URL}/api/register`;
+    const url = `${this.BASE_URL}/api/user`;
     return this.httpClient.post<IUser>(url, {...user}, this.httpOptions)
       .pipe(
         // retry(2),

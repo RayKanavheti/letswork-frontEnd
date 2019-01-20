@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
   userForm: FormGroup;
-
+  tapped = false;
+  successReg = false;
   validateConfirmPassword(): void {
     setTimeout(() => this.userForm.controls.confirm.updateValueAndValidity());
   }
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private authSer: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.UserSignUpform();
   }
   ngAfterViewInit() {
     $.getScript('/assets/js/main.js', function () { });
@@ -36,25 +38,27 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   // Registration form for a user
   UserSignUpform(): void {
     this.userForm = this.fb.group({
-      userName: ['', [Validators.required]],
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required]],
+      Username: ['', [Validators.required]],
+      Email: ['', [Validators.email, Validators.required]],
+      Password: ['', [Validators.required]],
       confirm: ['', [this.confirmValidator]],
-      phone: ['', [Validators.required]]
     });
   }
 
   submitForm($event: any, userInfo: IUser) {
+    this.tapped = true;
     $event.preventDefault();
     console.log('User Object', userInfo);
     delete userInfo['confirm'];
     this.authSer.Register(userInfo)
       .subscribe(data => {
-
+        this.tapped = false;
+        this.successReg = true;
         console.log('response from the server', data);
       },
         error => {
           console.log('some error happened');
+          this.tapped = false;
         });
   }
 }

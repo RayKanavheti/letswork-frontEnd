@@ -66,54 +66,54 @@
             <div class="columns is-vcentered pt-50 pb-50">
 
                 <!-- Signup form -->
-                <div class="column is-5 is-offset-2 z-index-2">
+                <div [hidden]="successReg" class="column is-5 is-offset-2 z-index-2">
                     <div id="signup-card" class="animated preFadeInLeft fadeInLeft">
                         <div class="flex-card clean-signup-card">
                             <h2 class="has-text-centered text-bold">Sign up</h2>
-                            <form [formGroup]="userForm">
+                            <form nz-form [formGroup]="userForm">
                                 <div class="control-material is-secondary">
-                                    <input formControlName="Username" class="material-input" type="text" required>
+                                    <input formControlName="Email" class="material-input" type="text" required>
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Email *</label>
-                                    <nz-form-explain *ngIf="userForm.get('email').dirty && userForm.get('email').errors">
-                                        <ng-container *ngIf="userForm.get('email').hasError('email')">
-                                            The input is not valid E-mail!
+                                    <nz-form-explain class=" has-text-danger" *ngIf="userForm.get('Email').dirty && userForm.get('Email').errors">
+                                        <ng-container *ngIf="userForm.get('Email').hasError('Email')">
+                                            <small class="validation-info error">input is not valid E-mail!</small>
                                         </ng-container>
-                                        <ng-container *ngIf="userForm.get('email').hasError('required')">
-                                            Please input your E-mail!
+                                        <ng-container *ngIf="userForm.get('Email').hasError('required')" class="has-text-danger">
+                                            <small class="validation-info error">Please input your E-mail!</small>
                                         </ng-container>
                                     </nz-form-explain>
                                 </div>
                                 <div class="control-material is-secondary">
-                                    <input class="material-input" type="text" required>
+                                    <input class="material-input" formControlName="Username" type="text" required>
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Username *</label>
-                                    <nz-form-explain *ngIf="userForm.get('userName').dirty && userForm.get('userName').errors || userForm.get('userName').pending ">
-                                        <ng-container *ngIf="userForm.get('userName').hasError('required')">
-                                            Please input your username!
+                                    <nz-form-explain *ngIf="userForm.get('Username').dirty && userForm.get('Username').errors || userForm.get('Username').pending ">
+                                        <ng-container *ngIf="userForm.get('Username').hasError('required')">
+                                            <small class="validation-info error">Please input your Username!</small>
                                         </ng-container>
-                                        <ng-container *ngIf="userForm.get('userName').pending">
+                                        <ng-container *ngIf="userForm.get('Username').pending">
                                             Validating...
                                         </ng-container>
                                     </nz-form-explain>
                                 </div>
                                 <div class="control-material is-secondary">
-                                    <input class="material-input" type="text" required (ngModelChange)="validateConfirmPassword()">
+                                    <input class="material-input" type="password" formControlName="Password" required (ngModelChange)="validateConfirmPassword()">
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Password *</label>
-                                    <nz-form-explain *ngIf="userForm.get('password').dirty&&userForm.get('password').hasError('required')">Please input your password!</nz-form-explain>
+                                    <nz-form-explain *ngIf="userForm.get('Password').dirty&&userForm.get('Password').hasError('required')"><small class="validation-info error">Please input your Password!</small></nz-form-explain>
                                 </div>
                                 <div class="control-material is-secondary">
-                                    <input class="material-input" type="text" formControlName="confirm" required>
+                                    <input class="material-input" type="password" formControlName="confirm" required>
                                     <span class="material-highlight"></span>
                                     <span class="bar"></span>
                                     <label>Confirm Password *</label>
                                     <nz-form-explain *ngIf="userForm.get('confirm').dirty&&userForm.get('confirm').errors">
                                         <ng-container *ngIf="userForm.get('confirm').hasError('required')">
-                                            Please confirm your password!
+                                            Please confirm your Password!
                                         </ng-container>
                                         <ng-container *ngIf="userForm.get('confirm').hasError('confirm')">
                                             Password is inconsistent!
@@ -122,7 +122,10 @@
                                 </div>
 
                                 <div class="mt-20">
-                                    <button (click)="submitForm($event, userForm.value)" [disabled]="!userForm.valid" class="button button-cta btn-align secondary-btn is-fullwidth rounded raised no-lh">Get started now</button>
+                                    <div>
+                                        <button (click)="submitForm($event, userForm.value)" [disabled]="!userForm.valid" class="button button-cta btn-align secondary-btn is-fullwidth rounded raised no-lh">Get started now</button>
+                                    </div>
+                                    <nz-spin [nzSpinning]="tapped" nzTip='Submitting...' [nzSize]="'large'"></nz-spin>
                                 </div>
                             </form>
                         </div>
@@ -131,7 +134,7 @@
                 <!-- Signup form -->
 
                 <!-- Signup features -->
-                <div class="column is-4 z-index-2">
+                <div [hidden]="successReg" class="column is-4 z-index-2">
                     <div class="flex-card signup-context secondary-card light-raised padding-40 is-hidden-mobile">
                         <h2 class="title is-4 is-landing-light has-text-centered light-text">What you get.</h2>
                         <!-- Icon block -->
@@ -164,6 +167,18 @@
                     </div>
                 </div>
                 <!-- /Signup features -->
+                <!--Alert message-->
+                <div [hidden]="!successReg" class="column is-8 is-offset-2 z-index-2">
+                    <div class="flex-card simple-shadow">
+                        <div class="card-body">
+                            <div class="content">
+                                <nz-alert nzType="success" nzMessage="Registration Successfull !!!" nzDescription="A mail have been sent to the provided email address. Go and click the link in the description to activate your account !!!" nzShowIcon>
+                                </nz-alert>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--./Alert message -->
             </div>
         </div>
     </div>
@@ -172,7 +187,7 @@
 <!-- /Hero and nav -->
 
 <!-- Footer light -->
-<footer class="footer footer-light">
+<footer class="footer footer-light" style="margin-left: 0">
     <div class="container">
         <div class="columns footer-columns is-flex-mobile">
             <div class="column is-half-mobile">
