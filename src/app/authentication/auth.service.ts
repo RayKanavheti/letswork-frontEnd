@@ -37,6 +37,14 @@ export class AuthService {
       );
   }
 
+  getUserByUUIDCode(uuid: any): Observable<IUser> {
+    const url = `${this.BASE_URL}/api/user_confirm/` + uuid;
+    return this.httpClient.get<IUser>(url)
+      .pipe(
+        retry(2), // retry a failed request up to 3 times
+        catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

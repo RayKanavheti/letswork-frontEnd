@@ -8,6 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from '../authentication/auth.service';
+import { ActivateComponent } from './activate/activate.component';
 
 
 
@@ -20,7 +21,7 @@ import { AuthService } from '../authentication/auth.service';
     ReactiveFormsModule,
     WelcomeModule
   ],
-  declarations: [LayoutComponent, LoginComponent, RegisterComponent],
+  declarations: [LayoutComponent, LoginComponent, RegisterComponent, ActivateComponent],
   providers: [AuthService]
 })
 export class CoreModule { }
