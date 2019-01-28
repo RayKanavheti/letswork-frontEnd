@@ -1,4 +1,6 @@
 import { IBid } from './bid';
+import { IProjectCategory } from './projectCat';
+import { ITask } from './task';
 
 
 export interface IProject {

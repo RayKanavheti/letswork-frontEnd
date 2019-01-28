@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from '../authentication/auth.service';
 import { ActivateComponent } from './activate/activate.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 
@@ -21,7 +24,7 @@ import { ActivateComponent } from './activate/activate.component';
     ReactiveFormsModule,
     WelcomeModule
   ],
-  declarations: [LayoutComponent, LoginComponent, RegisterComponent, ActivateComponent],
+  declarations: [LayoutComponent, LoginComponent, RegisterComponent, ActivateComponent, ProfileComponent, EditprofileComponent, NotificationsComponent],
   providers: [AuthService]
 })
 export class CoreModule { }

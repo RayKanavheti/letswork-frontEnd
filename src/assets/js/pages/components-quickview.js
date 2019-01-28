@@ -7,6 +7,7 @@ Quickview implementation
 "use strict";
 
 function closest(el, selector) {
+    debugger
     var matchesFn;
     // find vendor prefix
     ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function(fn) {
