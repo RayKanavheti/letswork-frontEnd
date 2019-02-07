@@ -1,0 +1,32 @@
+:host ::ng-deep nz-upload {
+    display: block;
+}
+
+:host ::ng-deep .ant-upload.ant-upload-drag {
+    height: 180px;
+}
+
+.ant-select-selection--multiple>ul>li,
+.ant-select-selection--multiple .ant-select-selection__rendered>ul>li {
+    list-style-type: none;
+}
+
+nz-input-number {
+    width: 100%;
+}
+
+.ant-card-grid:hover {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
+.paymentMethod {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid blue;
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { retry } from 'rxjs/internal/operators/retry';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { IUser } from '../shared/models/user';
 import { Observable } from 'rxjs/internal/Observable';
+import { ISkill } from '../shared/models/skill';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CoreService {
   private BASE_URL = environment.API_BASE_URL;
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     })
   };
   constructor(private httpClient: HttpClient) { }
@@ -22,6 +23,20 @@ export class CoreService {
   getUserByID(id: number): Observable<IUser> {
     const url = `${this.BASE_URL}/api/user/` + id;
     return this.httpClient.get<IUser>(url)
+      .pipe(
+        retry(2), // retry a failed request up to 3 times
+        catchError(this.handleError));
+  }
+  getAllSkills(): Observable<ISkill[]> {
+    const url = `${this.BASE_URL}/api/skills`;
+    return this.httpClient.get<ISkill[]>(url)
+      .pipe(
+        retry(2), // retry a failed request up to 3 times
+        catchError(this.handleError));
+  }
+  updateUser(user: IUser): Observable<IUser> {
+    const url = `${this.BASE_URL}/api/user_update`;
+    return this.httpClient.put<IUser>(url, user, this.httpOptions)
       .pipe(
         retry(2), // retry a failed request up to 3 times
         catchError(this.handleError));

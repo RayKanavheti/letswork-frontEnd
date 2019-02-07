@@ -1,7 +1,6 @@
-export interface ITask {
-    ID?: number;
-    CreatedAt?: string;
-    UpdatedAt?: string;
+import { ICommon } from './common';
+export interface ITask extends ICommon {
+
     Amount?: number;
     Status?: boolean;
     Reason?: string;

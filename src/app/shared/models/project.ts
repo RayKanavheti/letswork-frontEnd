@@ -1,12 +1,10 @@
 import { IBid } from './bid';
 import { IProjectCategory } from './projectCat';
 import { ITask } from './task';
+import { ICommon } from './common';
 
+export interface IProject extends ICommon {
 
-export interface IProject {
-    ID?: number;
-    CreatedAt?: string;
-    UpdatedAt?: string;
     Title?: string;
     Description?: string;
     DocPath1?: string;

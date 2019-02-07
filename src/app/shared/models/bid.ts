@@ -1,7 +1,6 @@
-export interface IBid {
-    ID?: number;
-    CreatedAt?: string;
-    UpdatedAt?: string;
+import { ICommon } from './common';
+export interface IBid extends ICommon {
+
     Amount?: string;
     Retracted?: boolean;
     Description?: string;

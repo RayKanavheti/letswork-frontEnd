@@ -24,7 +24,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ReactiveFormsModule,
     WelcomeModule
   ],
-  declarations: [LayoutComponent, LoginComponent, RegisterComponent, ActivateComponent, ProfileComponent, EditprofileComponent, NotificationsComponent],
+  declarations: [LayoutComponent, LoginComponent, RegisterComponent, ActivateComponent,
+    ProfileComponent, EditprofileComponent, NotificationsComponent],
   providers: [AuthService]
 })
 export class CoreModule { }

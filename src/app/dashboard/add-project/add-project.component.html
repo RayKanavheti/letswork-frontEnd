@@ -1,0 +1,89 @@
+<!-- Plain contact form -->
+<div class="columns is-vcentered">
+    <div class="column is-8 is-offset-2">
+        <div class="flex-card light-bordered light-raised">
+            <div class="content has-text-centered mt-20">
+                <h1 class="text-bolder">Please provide the details of your project</h1>
+            </div>
+            <div class="card-body">
+                <form class="padding-20">
+                    <div class="field">
+                        <label class="form-label is-size-4">Name of the project</label>
+                        <div class="control mt-5">
+                            <input type="text" class="input is-large" placeholder="eg Build a website">
+                        </div>
+                    </div>
+                    <div class="field mt-20">
+                        <label class="form-label is-size-4">A bit explanation about your project</label>
+                        <div class="control mt-5">
+                            <textarea class="textarea is-grow" rows="5" placeholder="Describe your project here..."></textarea>
+                        </div>
+                    </div>
+                    <div class="field mt-20">
+                        <label class="form-label is-size-4">Drop any Documents or images that can be of help</label>
+                        <div class="control mt-5">
+                            <nz-upload nzType="drag" [nzMultiple]="true" [nzLimit]="2" (nzChange)="handleChange($event)">
+                                <p class="ant-upload-drag-icon">
+                                    <i nz-icon type="inbox"></i>
+                                </p>
+                                <p class="ant-upload-text">Click or drag file to this area to upload</p>
+                                <p class="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                            </nz-upload>
+                        </div>
+                    </div>
+                    <div class="field mt-20">
+                        <label class="form-label is-size-4">What skills required for your project?</label>
+                        <div class="control mt-5">
+                            <nz-select [nzMaxMultipleCount]="7" style="width: 100%" nzMode="multiple" [nzSize]="'large'" nzPlaceHolder="Please select skills required">
+                                <nz-option *ngFor="let option of listOfSkills" [nzLabel]="option.Title" [nzValue]="option"></nz-option>
+                            </nz-select>
+                        </div>
+                    </div>
+                    <div class="field mt-20">
+                        <label class="form-label is-size-4">What is your estimated budget?</label>
+                        <div class="control mt-5">
+                            <div class="columns">
+                                <div class="column field is-6">
+                                    <label class="form-label">Minimum Budget</label>
+                                    <div class="control mt-5">
+                                        <nz-input-number [(ngModel)]="demoValue" [ngModelOptions]="{standalone: true}" [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
+                                    </div>
+                                </div>
+                                <div class="column field is-6">
+                                    <label class="form-label">Maximum Budget</label>
+                                    <div class="control mt-5">
+                                        <nz-input-number [(ngModel)]="demoValue2" [ngModelOptions]="{standalone: true}" [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field mt-20">
+                        <label class="form-label is-size-4">How do you want to pay?</label>
+                        <div class="control mt-5">
+                            <div class="columns">
+                                <div class="column field is-6">
+                                    <div nz-card-grid (click)="SelectedMethod(1)" [ngClass]="{paymentMethod: selected1}" [ngStyle]="gridStyle">
+                                        <h4>Pay fixed charge</h4>
+                                        <p>Agree on a price and release payment after the job is completed</p>
+                                    </div>
+                                </div>
+                                <div class="column field is-6">
+                                    <div nz-card-grid (click)="SelectedMethod(2)" [ngClass]="{paymentMethod: selected2}" [ngStyle]="gridStyle">
+                                        <h4>Pay hourly</h4>
+                                        <p>Pay for each and every hour the employee is involved in your project</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="field mt-20">
+                        <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" (click)="PostProject()" data-ripple-color="">Post my project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Plain contact form -->

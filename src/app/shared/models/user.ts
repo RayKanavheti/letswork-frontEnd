@@ -4,8 +4,8 @@ import { IAddress } from './address';
 import { IFinancial } from './financial';
 import { IPortfolio } from './portfolio';
 import { ISkill } from './skill';
-
-export interface IUser {
+import { ICommon } from './common';
+export interface IUser extends ICommon {
     ID?: number;
     CreatedAt?: string;
     UpdatedAt?: string;

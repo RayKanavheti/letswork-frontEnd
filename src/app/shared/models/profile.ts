@@ -1,7 +1,5 @@
-export interface IProfile {
-    ID?: number;
-    CreatedAt?: string;
-    UpdatedAt?: string;
+import { ICommon } from './common';
+export interface IProfile extends ICommon {
     Name?: string;
     Surname?: string;
     PhoneNumber?: string;
@@ -9,5 +7,6 @@ export interface IProfile {
     FacebookProfile?: string;
     TwitterProfile?: string;
     LinkedInProfile?: string;
+    Website?: string;
     UserID?: number;
 }

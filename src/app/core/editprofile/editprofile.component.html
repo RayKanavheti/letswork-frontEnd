@@ -6,163 +6,169 @@
             <span class="bottom"></span>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="loaded">
         <!-- Edit form -->
-        <form>
-            <div class="columns">
-                <div class="column">
-                    <div class="">
-                        <h5 class="title">Basic Information</h5>
+        <!-- <form> -->
+        <div class="columns">
+            <div class="column">
+                <div class="">
+                    <h5 class="title">Basic Information</h5>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-6">
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj?.Profile.Name" class="material-input" type="text" required>
+                    <i class="material-icons">person_outline</i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>First name</label>
+                </div>
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Email" class="material-input" type="text" required>
+                    <i class="material-icons">mail_outline</i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Email</label>
+                </div>
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Username" class="material-input" type="text" required>
+                    <i class="material-icons">user</i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Username</label>
+                </div>
+
+            </div>
+            <div class="column is-6">
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj?.Profile.Surname" class="material-input" type="text" required>
+                    <i class="material-icons">person</i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Surname</label>
+                </div>
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Profile.PhoneNumber" class="material-input" type="text" required>
+                    <i class="material-icons">smartphone</i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Mobile Number</label>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="">
+                    <h5 class="title">Social Media Links</h5>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-6">
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Profile.LinkedInProfile" class="material-input" type="text" required>
+                    <i class="fa fa-linkedin"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Linked In</label>
+                </div>
+
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Profile.TwitterProfile" class="material-input" type="text" required>
+                    <i class="fa fa-twitter fa-1x"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Twitter</label>
+                </div>
+
+            </div>
+            <div class="column is-6">
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Profile.FacebookProfile" class="material-input" type="text" required>
+                    <i class="fa fa-facebook-f"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Facebook</label>
+                </div>
+
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Profile.Website" class="material-input" type="text" required>
+                    <i class="fa fa-link"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Website</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="">
+                    <h5 class="title">Address</h5>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-6">
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Address.Line1" class="material-input" type="text" required>
+                    <i class="fa fa-linkedin"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Street Address</label>
+                </div>
+
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Address.City" class="material-input" type="text" required>
+                    <i class="fa fa-twitter fa-1x"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>City</label>
+                </div>
+
+            </div>
+            <div class="column is-6">
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Address.Suburb" class="material-input" type="text" required>
+                    <i class="fa fa-facebook-f"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Suburb</label>
+                </div>
+
+                <div class="control-material is-secondary has-icon">
+                    <input [(ngModel)]="UserObj.Address.Country" class="material-input" type="text" required>
+                    <i class="fa fa-instagram fa-1x"></i>
+                    <span class="material-highlight"></span>
+                    <span class="bar"></span>
+                    <label>Country</label>
+                </div>
+
+                <!-- <div class="has-text-centered mt-30">
+                    <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" data-ripple-color="">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="">
+                    <h5 class="title">Education</h5>
+                    <div class="mt-20">
+                        <button class="button is-warning btn-dash raised no-lh" (click)="AddEducation()">Add New</button>
                     </div>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="material-icons">person_outline</i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>First name</label>
-                    </div>
+        </div>
 
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="material-icons">mail_outline</i>
+        <div *ngFor="let education of UserObj.Educations; let i = index">
+            <div class="columns" style="padding-bottom: 0; margin-bottom: 0">
+                <div class="column is-6" style="padding-bottom: 0; margin-bottom: 0">
+                    <div class="control-material is-secondary">
+                        <nz-date-picker [nzClassName]="'material-input'" [nzSize]="'large'" [nzPlaceHolder]="'Start Date'" [(ngModel)]="education?.Period.StartDate" [nzFormat]="'yyyy-dd-MM'"></nz-date-picker>
                         <span class="material-highlight"></span>
                         <span class="bar"></span>
-                        <label>Email</label>
-                    </div>
-
-                </div>
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="material-icons">person</i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Surname</label>
-                    </div>
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="material-icons">smartphone</i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Mobile Number</label>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="">
-                        <h5 class="title">Social Media Links</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-linkedin"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Linked In</label>
-                    </div>
-
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-twitter fa-1x"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Twitter</label>
-                    </div>
-
-                </div>
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-facebook-f"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Facebook</label>
-                    </div>
-
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-instagram fa-1x"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Instagram</label>
-                    </div>
-
-                    <div class="has-text-centered mt-30">
-                        <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" data-ripple-color="">Save changes</button>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="">
-                        <h5 class="title">Address</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-linkedin"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Street Address</label>
-                    </div>
-
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-twitter fa-1x"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>City</label>
-                    </div>
-
-                </div>
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-facebook-f"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Suburb</label>
-                    </div>
-
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-instagram fa-1x"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Country</label>
-                    </div>
-
-                    <div class="has-text-centered mt-30">
-                        <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" data-ripple-color="">Save changes</button>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="">
-                        <h5 class="title">Education</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-linkedin"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Start Date</label>
                     </div>
 
                     <div class="control-material is-secondary has-icon">
@@ -172,41 +178,112 @@
                         <span class="bar"></span>
                         <label>Education Type</label>
                     </div>
+
                     <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
+                        <input [(ngModel)]="education.EducationType" class="material-input" type="text" required>
+
+                        <i class="fa fa-instagram fa-1x"></i>
+                        <span class="material-highlight"></span>
+                        <span class="bar"></span>
+                        <label>Area of study</label>
+                    </div>
+                </div>
+                <div class="column is-6" style="padding-bottom: 0; margin-bottom: 0">
+                    <div class="control-material is-secondary">
+                        <nz-date-picker [nzClassName]="'material-input'" [(ngModel)]="education?.Period.EndDate" [nzSize]="'large'" [nzPlaceHolder]="'End Date'" [nzFormat]="'yyyy-dd-MM'"></nz-date-picker>
+                        <span class="material-highlight"></span>
+                        <span class="bar"></span>
+                    </div>
+                    <div class="control-material is-secondary has-icon">
+                        <input [(ngModel)]="education.InstitutionName" class="material-input" type="text" required>
                         <i class="fa fa-twitter fa-1x"></i>
                         <span class="material-highlight"></span>
                         <span class="bar"></span>
                         <label>Institution Name</label>
                     </div>
 
+                    <div class="material is-secondary is-right" *ngIf="UserObj.Educations.length > 1">
+                        <button class="button is-danger btn-dash raised no-lh" (click)="RemoveEducation(i)">Remove</button>
+                    </div>
+                    <!-- <div class="has-text-centered mt-30">
+                        <button class="button btn-dash primary-btn is-raised ripple no-lh" (click)="AddEducation()" data-ripple-color=""><i class="fa fa-plus"></i>Add another education</button>
+                    </div>
+                    <div class="has-text-centered mt-30">
+                        <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" data-ripple-color="">Save
+              changes</button>
+                    </div> -->
                 </div>
-                <div class="column is-6">
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-facebook-f"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>End Date</label>
-                    </div>
-
-                    <div class="control-material is-secondary has-icon">
-                        <input class="material-input" type="text" required>
-                        <i class="fa fa-instagram fa-1x"></i>
-                        <span class="material-highlight"></span>
-                        <span class="bar"></span>
-                        <label>Certificate Attained</label>
-                    </div>
-
-                    <div class="has-text-centered mt-30">
-                        <button class="button btn-dash primary-btn is-raised ripple no-lh" data-ripple-color=""><i class="fa fa-plus"></i>Add another education</button>
-                    </div>
-                    <div class="has-text-centered mt-30">
-                        <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" data-ripple-color="">Save changes</button>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="">
+                    <h5 class="title">Skills</h5>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-12">
+                <nz-select [nzMaxMultipleCount]="7" style="width: 100%" nzMode="multiple" [nzSize]="'large'" nzPlaceHolder="Please select">
+                    <nz-option *ngFor="let option of listOfSkills" [nzLabel]="option.Title" [nzValue]="option"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="">
+                    <h5 class="title">Portfolio</h5>
+                    <div class="mt-20">
+                        <button class="button is-warning btn-dash raised no-lh" (click)="AddPortfolio()">Add New</button>
                     </div>
                 </div>
             </div>
-        </form>
-        <!-- /Edit form -->
+        </div>
+        <div *ngFor="let portfolio of UserObj.Portfolios; let i = index">
+            <div class="columns">
+                <div class="column is-6">
+                    <div class="control-material is-secondary has-icon">
+                        <input [(ngModel)]="portfolio.Name" class="material-input" type="text" required>
+                        <i class="fa fa-twitter fa-1x"></i>
+                        <span class="material-highlight"></span>
+                        <span class="bar"></span>
+                        <label>Name of project</label>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="control-material is-secondary has-icon">
+                        <input [(ngModel)]="portfolio.Link" class="material-input" type="text" required>
+                        <i class="fa fa-twitter fa-1x"></i>
+                        <span class="material-highlight"></span>
+                        <span class="bar"></span>
+                        <label>Link to your past project</label>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-6">
+
+                </div>
+                <div class="column is-6">
+                    <div class="material is-secondary is-right" *ngIf="UserObj.Portfolios.length > 1">
+                        <button class="button is-danger btn-dash raised no-lh" (click)="RemovePortifolio(i)">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-6">
+
+            </div>
+            <div class="column is-6">
+                <div class="column is-6">
+                    <div class="has-text-centered mt-30">
+                        <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" (click)="updateProfile()" data-ripple-color="">Save
+              changes</button>
+                    </div>
+                </div>
+            </div>
+            <!-- </form> -->
+            <!-- /.Edit form -->
+        </div>
     </div>
-</div>

@@ -1,9 +1,7 @@
 
-export interface IPortfolio {
-    ID?: number;
-    CreatedAt?: string;
-    UpdatedAt?: string;
-    DeletedAt?: string;
+import { ICommon } from './common';
+export interface IPortfolio extends ICommon {
+
     Name?: string;
     Link?: string;
     UserID?: number;

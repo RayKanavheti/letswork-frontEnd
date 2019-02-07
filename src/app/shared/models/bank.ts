@@ -1,7 +1,7 @@
-export interface IBank {
-    ID?: number;
-    CreatedAt?: string;
-    UpdatedAt?: string;
+
+import { ICommon } from './common';
+export interface IBank extends ICommon  {
+
     BankName?: string;
     AccountName?: string;
     AccountNumber?: string;
