@@ -2,14 +2,11 @@ import { IBid } from './bid';
 import { IProjectCategory } from './projectCat';
 import { ITask } from './task';
 import { ICommon } from './common';
+import { IProjectFile } from './projectFiles';
 
 export interface IProject extends ICommon {
-
     Title?: string;
     Description?: string;
-    DocPath1?: string;
-    DocPath2?: string;
-    DocPath3?: string;
     Duration?: string;
     IsComplete?: boolean;
     Status?: string;
@@ -19,5 +16,6 @@ export interface IProject extends ICommon {
     Tasks?: ITask;
     Bids?: IBid;
     OwnerID?: number;
+    ProjectFiles?: IProjectFile[];
 
 }

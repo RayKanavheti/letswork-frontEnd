@@ -24,7 +24,7 @@ export class AddProjectComponent implements OnInit {
   projectForm: FormGroup;
   formatterDollar = value => `$ ${value}`;
   parserDollar = value => value.replace('$ ', '');
- 
+
   constructor(private msg: NzMessageService, private coreService: CoreService, private fb: FormBuilder) { }
 
   ngOnInit() {
