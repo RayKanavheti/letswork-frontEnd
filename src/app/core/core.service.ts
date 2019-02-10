@@ -7,6 +7,8 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { IUser } from '../shared/models/user';
 import { Observable } from 'rxjs/internal/Observable';
 import { ISkill } from '../shared/models/skill';
+import { IProject } from '../shared/models/project';
+import { IProjectFile } from '../shared/models/projectFiles';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,22 @@ export class CoreService {
       .pipe(
         retry(2), // retry a failed request up to 3 times
         catchError(this.handleError));
+  }
+  submitProjectDetails(project: IProject): Observable<IProject> {
+    const url = `${this.BASE_URL}/api/project`;
+    return this.httpClient.post<IProject>(url, project, this.httpOptions)
+    .pipe(
+      retry(2), // retry a failed request up to 3 times
+      catchError(this.handleError));
+  }
+
+  UploadProjectFiles(formdata: FormData, ProjectId: number): Observable<IProjectFile[]> {
+
+    const url = `${this.BASE_URL}/api/files/` + ProjectId;
+    return this.httpClient.post<IProjectFile[]>(url, formdata)
+    .pipe(
+      retry(2), // retry a failed request up to 3 times
+      catchError(this.handleError));
   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

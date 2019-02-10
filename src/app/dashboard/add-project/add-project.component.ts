@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, UploadFile } from 'ng-zorro-antd';
 import { CoreService } from 'src/app/core/core.service';
 import { ISkill } from 'src/app/shared/models/skill';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { DashboardService } from '../dashboard.service';
+import { IProject, Project } from 'src/app/shared/models/project';
 
 @Component({
   selector: 'app-add-project',
@@ -15,36 +18,47 @@ export class AddProjectComponent implements OnInit {
   demoValue2 = 100;
   listOfSkills: ISkill[] = [];
   gridStyle = {
-    width    : '100%',
+    width: '100%',
     textAlign: 'center'
   };
   selected1 = false;
   selected2 = false;
+  Timelines = ['1 day', '3 days', '1 week', '2 '];
   listOfSelectedValue: ISkill[] = [];
   projectForm: FormGroup;
+  uploading = false;
+  fileList: UploadFile[] = [];
+  btnLoading = false;
+  customReq = (item: any) => {
+    return Subscription.EMPTY;
+  }
   formatterDollar = value => `$ ${value}`;
   parserDollar = value => value.replace('$ ', '');
 
-  constructor(private msg: NzMessageService, private coreService: CoreService, private fb: FormBuilder) { }
+  constructor(private msg: NzMessageService, private coreService: CoreService, private dashService: DashboardService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getAllSkills();
+    this.initForm();
   }
   initForm() {
-this.projectForm = this.fb.group({
-
-});
+    this.projectForm = this.fb.group({
+      Title: [''],
+      Description: [''],
+      Duration: [''],
+      IsComplete: [false],
+      Status: ['not active'],
+      Assisted: [false],
+      Budget: this.fb.group({
+        minimum: [0],
+        maximum: [0]
+      })
+    });
   }
-  handleChange({ file, fileList }): void {
-    const status = file.status;
-    if (status !== 'uploading') {
-      console.log(file, fileList);
-    }
-    if (status === 'done') {
-      this.msg.success(`${file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      this.msg.error(`${file.name} file upload failed.`);
-    }
+  beforeUpload = (file: UploadFile): boolean => {
+    this.fileList.push(file);
+    return false;
   }
 
   getAllSkills(): void {
@@ -82,7 +96,35 @@ this.projectForm = this.fb.group({
       }
     }
   }
-  PostProject() {
- 
+  PostProject(project: IProject) {
+    project.OwnerID = 2;
+    project.Jobs = this.listOfSelectedValue;
+    project.ProjectType = this.selected2 === true ? 'hourly' : 'fixed';
+    this.coreService.submitProjectDetails(project)
+      .subscribe(res => {
+        project = res;
+        this.msg.create('success', 'Project Details uploaded successfully');
+        this.uploadFiles(res.ID);
+      });
+  }
+
+  uploadFiles(projectId: number) {
+    const formData = new FormData();
+    // tslint:disable-next-line:no-any
+    this.fileList.forEach((file: any) => {
+      formData.append('files', file);
+    });
+    this.uploading = true;
+    this.coreService.UploadProjectFiles(formData, projectId)
+      .subscribe(data => {
+        console.log('my response', data);
+        this.msg.create('success', 'File uploaded successfully');
+        this.uploading = false;
+      }, error => {
+        this.msg.create('error', 'File upload failed');
+        this.uploading = false;
+        console.log(error);
+      }
+      );
   }
 }
