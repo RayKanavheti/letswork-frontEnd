@@ -47,8 +47,7 @@ export class AddProjectComponent implements OnInit {
       Title: [''],
       Description: [''],
       Duration: [''],
-      IsComplete: [false],
-      Status: ['not active'],
+      Status: ['open'],
       Assisted: [false],
       Budget: this.fb.group({
         minimum: [0],

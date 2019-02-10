@@ -1,0 +1,35 @@
+<div class="columns is-vcentered pt-30">
+    <div class="column is-121">
+
+        <nz-table class="responsive-table is-secondary mb-40" #basicTable [nzData]="dataSet">
+            <tbody>
+                <tr>
+
+                    <th>PROJECT NAME</th>
+                    <th>BIDS</th>
+                    <th>AVERAGE BID</th>
+                    <th>BID END DATE</th>
+                    <th>ACTIONS</th>
+                </tr>
+                <tr *ngFor="let data of basicTable.data; let i = index">
+                    <td data-th="PROJECT NAME">
+                        {{data.Title}}
+                    </td>
+                    <td data-th="BIDS">
+                        {{bids[i]}}
+                    </td>
+                    <td data-th="AVERAGE BID">
+                        Engineer
+                    </td>
+                    <td data-th="BID END DATE">
+                        21
+                    </td>
+
+                    <td data-th="ACTIONS">
+                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

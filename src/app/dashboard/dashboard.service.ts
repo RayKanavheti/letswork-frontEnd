@@ -36,6 +36,14 @@ export class DashboardService {
       retry(2), // retry a failed request up to 3 times
       catchError(this.handleError));
   }
+GetProjectByStatus(OwnerId: number, Status: string): Observable<IProject[]> {
+
+    const url = `${this.BASE_URL}/api/projects_status/` + OwnerId + '/' + Status;
+    return this.httpClient.get<IProject[]>(url, this.httpOptions)
+    .pipe(
+      retry(2), // retry a failed request up to 3 times
+      catchError(this.handleError));
+  }
   // Catching Errors
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

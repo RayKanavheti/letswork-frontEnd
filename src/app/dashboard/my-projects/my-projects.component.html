@@ -3,15 +3,18 @@
         <ng-template #openProject>
             <i nz-icon type="apple"></i>Open Project
         </ng-template>
+        <app-open-projects></app-open-projects>
     </nz-tab>
     <nz-tab [nzTitle]="workInProgress">
         <ng-template #workInProgress>
             <i nz-icon type="apple"></i>Work In Progress
         </ng-template>
+        <app-work-in-progress></app-work-in-progress>
     </nz-tab>
     <nz-tab [nzTitle]="pastProjects">
         <ng-template #pastProjects>
             <i nz-icon type="apple"></i>Past Projects
         </ng-template>
+        <app-past-projects></app-past-projects>
     </nz-tab>
 </nz-tabset>
