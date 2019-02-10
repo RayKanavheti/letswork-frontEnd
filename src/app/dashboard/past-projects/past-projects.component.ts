@@ -16,10 +16,10 @@ export class PastProjectsComponent implements OnInit {
     this.getProjectByStatusnOwnerId();
   }
   getProjectByStatusnOwnerId() {
-    this.dashService.GetProjectByStatus(1, 'open')
+    this.dashService.GetProjectByStatus(1, 'completed')
       .subscribe(res => {
         this.dataSet = res;
-        console.log('open projects', this.dataSet);
+        console.log('completed projects', this.dataSet);
       },
         error => {
           console.log('error', error);

@@ -1,153 +1,37 @@
 <div class="columns is-vcentered pt-30">
     <div class="column is-121">
 
-        <nz-table class="responsive-table is-secondary mb-40">
+        <nz-table class="responsive-table is-secondary mb-40" #basicTable [nzData]="dataSet">
             <tbody>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Projects</th>
-                    <th>Skills</th>
-                    <th>Actions</th>
+                    <th>#</th>
+                    <th>PROJECT NAME</th>
+                    <th>DONE BY</th>
+                    <th>AWARDED BID</th>
+                    <th>DEADLINE</th>
+                    <th>MILESTONES</th>
+                    <th>ACTIONS</th>
                 </tr>
-                <tr>
-                    <td data-th="ID">
-                        1
+                <tr *ngFor="let data of basicTable.data; let i = index">
+                    <td data-th="#">
+                        {{i + 1}}
                     </td>
-                    <td data-th="Name">
-                        Michael Hoffman
+                    <td data-th="PROJECT NAME">
+                        {{data.Title}}
                     </td>
-                    <td data-th="Role">
-                        Engineer
+                    <td data-th="DONE BY">
+
                     </td>
-                    <td data-th="Projects">
-                        21 projects
+                    <td data-th="AWARDED BID">
+
                     </td>
-                    <td data-th="Skills">
-                        Javascript
+                    <td data-th="DEADLINE">
+
                     </td>
-                    <td data-th="Actions">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
+                    <td data-th="MILESTONES">
+
                     </td>
-                </tr>
-                <tr>
-                    <td data-th="ID">
-                        2
-                    </td>
-                    <td data-th="Name">
-                        Marjory Cambell
-                    </td>
-                    <td data-th="Role">
-                        Sales Rep
-                    </td>
-                    <td data-th="Projects">
-                        03 projects
-                    </td>
-                    <td data-th="Skills">
-                        Sales
-                    </td>
-                    <td data-th="Actions">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-th="ID">
-                        3
-                    </td>
-                    <td data-th="Name">
-                        Kevin Smith
-                    </td>
-                    <td data-th="Role">
-                        Engineer
-                    </td>
-                    <td data-th="Projects">
-                        12 projects
-                    </td>
-                    <td data-th="Skills">
-                        Php
-                    </td>
-                    <td data-th="Actions">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-th="ID">
-                        4
-                    </td>
-                    <td data-th="Name">
-                        Adrian Fallow
-                    </td>
-                    <td data-th="Role">
-                        Sales Manager
-                    </td>
-                    <td data-th="Projects">
-                        07 projects
-                    </td>
-                    <td data-th="Skills">
-                        Sales
-                    </td>
-                    <td data-th="Actions">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-th="ID">
-                        5
-                    </td>
-                    <td data-th="Name">
-                        Helen Miller
-                    </td>
-                    <td data-th="Role">
-                        Marketing Manager
-                    </td>
-                    <td data-th="Projects">
-                        03 projects
-                    </td>
-                    <td data-th="Skills">
-                        Marketing
-                    </td>
-                    <td data-th="Actions">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-th="ID">
-                        6
-                    </td>
-                    <td data-th="Name">
-                        Sarah Mitchells
-                    </td>
-                    <td data-th="Role">
-                        Accountant
-                    </td>
-                    <td data-th="Projects">
-                        01 project
-                    </td>
-                    <td data-th="Skills">
-                        Finance
-                    </td>
-                    <td data-th="Actions">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-th="ID">
-                        7
-                    </td>
-                    <td data-th="Name">
-                        Kareem Jabbar
-                    </td>
-                    <td data-th="Role">
-                        Accountant
-                    </td>
-                    <td data-th="Projects">
-                        14 projects
-                    </td>
-                    <td data-th="Skills">
-                        Finance
-                    </td>
-                    <td data-th="Actions">
+                    <td data-th="ACTIONS">
                         <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Hire now</button>
                     </td>
                 </tr>
