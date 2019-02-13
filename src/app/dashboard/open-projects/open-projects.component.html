@@ -27,7 +27,7 @@
 
                     <td data-th="ACTIONS">
                         <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Delete</button>
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Edit</button>
+                        <button (click)="showModal()" class="button is-small btn-align accent-btn raised rounded btn-outlined">Edit</button>
                         <button class="button is-small btn-align accent-btn raised rounded btn-outlined">View</button>
                     </td>
                 </tr>
@@ -35,3 +35,100 @@
         </nz-table>
     </div>
 </div>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzWidth]="width" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+        Edit Project
+    </ng-template>
+
+    <ng-template #modalContent>
+        <form class="padding-20">
+            <div class="field">
+                <label class="form-label is-size-4">Name of the project</label>
+                <div class="control mt-5">
+                    <input type="text" class="input is-large" placeholder="eg Build a website">
+                </div>
+            </div>
+            <div class="field mt-20">
+                <label class="form-label is-size-4">A bit explanation about your project</label>
+                <div class="control mt-5">
+                    <textarea class="textarea is-grow" rows="5" placeholder="Describe your project here..."></textarea>
+                </div>
+            </div>
+            <div class="field mt-20">
+                <label class="form-label is-size-4">Drop any Documents or images that can be of help</label>
+                <div class="control mt-5">
+
+                    <!-- <nz-upload [(nzFileList)]="fileList" style="width: 100%" [nzSize]="'large'" [nzBeforeUpload]="beforeUpload">
+                        <button nz-button>
+            <i nz-icon type="upload"></i><span>Select File</span>
+          </button>
+                    </nz-upload> -->
+                </div>
+            </div>
+            <div class="field mt-20">
+                <label class="form-label is-size-4">What skills required for your project?</label>
+                <div class="control mt-5">
+                    <nz-select [nzMaxMultipleCount]="7" style="width: 100%" [(ngModel)]="listOfSelectedValue" nzMode="multiple" [nzSize]="'large'" nzPlaceHolder="Please select skills required">
+                        <nz-option *ngFor="let option of listOfSkills" [nzLabel]="option.Title" [nzValue]="option"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class="field mt-20">
+                <label class="form-label is-size-4">What is your estimated budget?</label>
+                <div class="control mt-5">
+                    <div class="columns" formGroupName="Budget">
+                        <div class="column field is-6">
+                            <label class="form-label">Minimum Budget</label>
+                            <div class="control mt-5">
+                                <nz-input-number [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
+                            </div>
+                        </div>
+                        <div class="column field is-6">
+                            <label class="form-label">Maximum Budget</label>
+                            <div class="control mt-5">
+                                <nz-input-number [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="field mt-20">
+                    <label class="form-label is-size-4">What is the estimated duration of the project?</label>
+                    <div class="control mt-5">
+                    <nz-select style="width: 120px;" formControlName="Duration" [nzSize]="'large'" nzPlaceHolder="What is the estimated duration of the project?">
+                    <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                  </nz-select>
+                  </div>
+            </div> -->
+            <div class="field mt-20">
+                <label class="form-label is-size-4">How do you want to pay?</label>
+                <div class="control mt-5">
+                    <div class="columns">
+                        <div class="column field is-6">
+                            <div nz-card-grid (click)="SelectedMethod(1)" [ngClass]="{paymentMethod: selected1}" [ngStyle]="gridStyle">
+                                <h4>Pay fixed charge</h4>
+                                <p>Agree on a price and release payment after the job is completed</p>
+                            </div>
+                        </div>
+                        <div class="column field is-6">
+                            <div nz-card-grid (click)="SelectedMethod(2)" [ngClass]="{paymentMethod: selected2}" [ngStyle]="gridStyle">
+                                <h4>Pay hourly</h4>
+                                <p>Pay for each and every hour the employee is involved in your project</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="field mt-20">
+                <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" (click)="submitProject()" data-ripple-color="">Post my project</button>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <span>Modal Footer: </span>
+        <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
+        <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Custom Submit</button>
+    </ng-template>
+</nz-modal>

@@ -9,10 +9,11 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { OpenProjectsComponent } from './open-projects/open-projects.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { PastProjectsComponent } from './past-projects/past-projects.component';
+import { ViewProjectComponent } from './view-project/view-project.component';
 
 @NgModule({
   declarations: [ManageComponent, AddProjectComponent, MyProjectsComponent, OpenProjectsComponent,
-    WorkInProgressComponent, PastProjectsComponent],
+    WorkInProgressComponent, PastProjectsComponent, ViewProjectComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
