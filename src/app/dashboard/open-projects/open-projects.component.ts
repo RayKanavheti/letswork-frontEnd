@@ -20,6 +20,11 @@ export class OpenProjectsComponent implements OnInit {
   selected1 = false;
   selected2 = false;
   width = 750;
+  editIndex: number;
+  gridStyle = {
+    width: '100%',
+    textAlign: 'center'
+  };
   formatterDollar = value => `$ ${value}`;
   parserDollar = value => value.replace('$ ', '');
   constructor(private dashService: DashboardService, private coreService: CoreService) { }
@@ -40,7 +45,25 @@ export class OpenProjectsComponent implements OnInit {
           console.log('error', error);
         });
   }
-  showModal(): void {
+  showEditModal(i: number): void {
+    this.editIndex = i;
+    this.listOfSelectedValue = this.dataSet[i].Jobs;
+    if (this.dataSet[i].ProjectType === 'fixed') {
+      if (this.selected1 === false) {
+        this.selected1 = true;
+        if (this.selected1 === true) {
+          this.selected2 = false;
+        }
+        return;
+      }
+      if (this.selected1 === true) {
+        this.selected1 = false;
+        return;
+      }
+    }
+    if (this.dataSet[i].ProjectType === 'hourly') {
+
+    }
     this.isVisible = true;
     this.getAllSkills();
   }
@@ -91,5 +114,8 @@ export class OpenProjectsComponent implements OnInit {
         return;
       }
     }
+  }
+  submitEditedProject() {
+
   }
 }

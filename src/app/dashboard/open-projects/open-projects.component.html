@@ -27,7 +27,7 @@
 
                     <td data-th="ACTIONS">
                         <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Delete</button>
-                        <button (click)="showModal()" class="button is-small btn-align accent-btn raised rounded btn-outlined">Edit</button>
+                        <button (click)="showEditModal(i)" class="button is-small btn-align accent-btn raised rounded btn-outlined">Edit</button>
                         <button class="button is-small btn-align accent-btn raised rounded btn-outlined">View</button>
                     </td>
                 </tr>
@@ -45,13 +45,13 @@
             <div class="field">
                 <label class="form-label is-size-4">Name of the project</label>
                 <div class="control mt-5">
-                    <input type="text" class="input is-large" placeholder="eg Build a website">
+                    <input type="text" class="input is-large" [(ngModel)]="dataSet[editIndex].Title" placeholder="eg Build a website">
                 </div>
             </div>
             <div class="field mt-20">
                 <label class="form-label is-size-4">A bit explanation about your project</label>
                 <div class="control mt-5">
-                    <textarea class="textarea is-grow" rows="5" placeholder="Describe your project here..."></textarea>
+                    <textarea class="textarea is-grow" [(ngModel)]="dataSet[editIndex].Description" rows="5" placeholder="Describe your project here..."></textarea>
                 </div>
             </div>
             <div class="field mt-20">
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="field mt-20">
-                <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" (click)="submitProject()" data-ripple-color="">Post my project</button>
+                <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" (click)="submitEditedProject()" data-ripple-color="">Update my project</button>
             </div>
         </form>
     </ng-template>
