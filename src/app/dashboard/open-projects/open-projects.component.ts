@@ -16,11 +16,12 @@ export class OpenProjectsComponent implements OnInit {
   isVisible = false;
   isConfirmLoading = false;
   listOfSelectedValue: ISkill[] = [];
+  listOfSelectedValueLabel = [];
   listOfSkills: ISkill[] = [];
   selected1 = false;
   selected2 = false;
   width = 750;
-  editIndex: number;
+  editIndex: number = undefined;
   gridStyle = {
     width: '100%',
     textAlign: 'center'
@@ -37,7 +38,7 @@ export class OpenProjectsComponent implements OnInit {
       .subscribe(res => {
         this.dataSet = res;
         for (let i = 0; i < this.dataSet.length; i++) {
-            this.bids.push(this.dataSet[i].Bids.length);
+          this.bids.push(this.dataSet[i].Bids.length);
         }
         console.log('open projects', this.dataSet);
       },
@@ -47,7 +48,12 @@ export class OpenProjectsComponent implements OnInit {
   }
   showEditModal(i: number): void {
     this.editIndex = i;
-    this.listOfSelectedValue = this.dataSet[i].Jobs;
+    this.listOfSelectedValueLabel = [];
+    for (let k = 0; k < this.dataSet[i].Jobs.length; k++) {
+      this.listOfSelectedValueLabel.push(this.dataSet[i].Jobs[k].Title);
+    }
+    this.getAllSkills();
+    this.isVisible = true;
     if (this.dataSet[i].ProjectType === 'fixed') {
       if (this.selected1 === false) {
         this.selected1 = true;
@@ -62,10 +68,18 @@ export class OpenProjectsComponent implements OnInit {
       }
     }
     if (this.dataSet[i].ProjectType === 'hourly') {
-
+      if (this.selected2 === false) {
+        this.selected2 = true;
+        if (this.selected1 === true) {
+          this.selected1 = false;
+        }
+        return;
+      }
+      if (this.selected2 === true) {
+        this.selected2 = false;
+        return;
+      }
     }
-    this.isVisible = true;
-    this.getAllSkills();
   }
 
   handleOk(): void {
@@ -116,6 +130,14 @@ export class OpenProjectsComponent implements OnInit {
     }
   }
   submitEditedProject() {
-
+    this.listOfSelectedValue = [];
+    for (let i = 0; i < this.listOfSelectedValueLabel.length; i++) {
+      for (let k = 0; k < this.listOfSkills.length; k++) {
+        if (this.listOfSelectedValueLabel[i] === this.listOfSkills[k].Title ) {
+            this.listOfSelectedValue.push(this.listOfSkills[k]);
+        }
+      }
+    }
+    console.log('full selected...', this.listOfSelectedValue);
   }
 }

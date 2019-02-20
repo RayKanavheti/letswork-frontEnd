@@ -41,7 +41,7 @@
     </ng-template>
 
     <ng-template #modalContent>
-        <form class="padding-20">
+        <div *ngIf="editIndex !== undefined" class="padding-20">
             <div class="field">
                 <label class="form-label is-size-4">Name of the project</label>
                 <div class="control mt-5">
@@ -58,48 +58,37 @@
                 <label class="form-label is-size-4">Drop any Documents or images that can be of help</label>
                 <div class="control mt-5">
 
-                    <!-- <nz-upload [(nzFileList)]="fileList" style="width: 100%" [nzSize]="'large'" [nzBeforeUpload]="beforeUpload">
-                        <button nz-button>
-            <i nz-icon type="upload"></i><span>Select File</span>
-          </button>
-                    </nz-upload> -->
+
                 </div>
             </div>
             <div class="field mt-20">
                 <label class="form-label is-size-4">What skills required for your project?</label>
                 <div class="control mt-5">
-                    <nz-select [nzMaxMultipleCount]="7" style="width: 100%" [(ngModel)]="listOfSelectedValue" nzMode="multiple" [nzSize]="'large'" nzPlaceHolder="Please select skills required">
-                        <nz-option *ngFor="let option of listOfSkills" [nzLabel]="option.Title" [nzValue]="option"></nz-option>
+                    <nz-select [nzMaxMultipleCount]="9" style="width: 100%" [(ngModel)]="listOfSelectedValueLabel" nzMode="multiple" [nzSize]="'large'" nzPlaceHolder="Please select skills required">
+                        <nz-option *ngFor="let option of listOfSkills" [nzLabel]="option.Title" [nzValue]="option.Title"></nz-option>
                     </nz-select>
                 </div>
             </div>
             <div class="field mt-20">
                 <label class="form-label is-size-4">What is your estimated budget?</label>
                 <div class="control mt-5">
-                    <div class="columns" formGroupName="Budget">
+                    <div class="columns">
                         <div class="column field is-6">
                             <label class="form-label">Minimum Budget</label>
                             <div class="control mt-5">
-                                <nz-input-number [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
+                                <nz-input-number [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [(ngModel)]="dataSet[editIndex].Budget.minimum" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
                             </div>
                         </div>
                         <div class="column field is-6">
                             <label class="form-label">Maximum Budget</label>
                             <div class="control mt-5">
-                                <nz-input-number [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
+                                <nz-input-number [nzSize]="'large'" [nzMin]="0" [nzMax]="2000000" [nzStep]="10" [(ngModel)]="dataSet[editIndex].Budget.maximum" [nzFormatter]="formatterDollar" [nzParser]="parserDollar"></nz-input-number>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="field mt-20">
-                    <label class="form-label is-size-4">What is the estimated duration of the project?</label>
-                    <div class="control mt-5">
-                    <nz-select style="width: 120px;" formControlName="Duration" [nzSize]="'large'" nzPlaceHolder="What is the estimated duration of the project?">
-                    <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-                  </nz-select>
-                  </div>
-            </div> -->
+
             <div class="field mt-20">
                 <label class="form-label is-size-4">How do you want to pay?</label>
                 <div class="control mt-5">
@@ -123,7 +112,7 @@
             <div class="field mt-20">
                 <button class="button btn-dash secondary-btn is-raised is-fullwidth rounded ripple no-lh" (click)="submitEditedProject()" data-ripple-color="">Update my project</button>
             </div>
-        </form>
+        </div>
     </ng-template>
 
     <ng-template #modalFooter>
