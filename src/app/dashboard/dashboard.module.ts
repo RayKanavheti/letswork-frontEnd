@@ -6,14 +6,15 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
-import { OpenProjectsComponent } from './open-projects/open-projects.component';
-import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
-import { PastProjectsComponent } from './past-projects/past-projects.component';
-import { ViewProjectComponent } from './view-project/view-project.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { OpenProjectsComponent } from './my-projects/open-projects/open-projects.component';
+import { WorkInProgressComponent } from './my-projects/work-in-progress/work-in-progress.component';
+import { PastProjectsComponent } from './my-projects/past-projects/past-projects.component';
+import { ViewProjectComponent } from './my-projects/view-project/view-project.component';
 
 @NgModule({
   declarations: [ManageComponent, AddProjectComponent, MyProjectsComponent, OpenProjectsComponent,
-    WorkInProgressComponent, PastProjectsComponent, ViewProjectComponent],
+    WorkInProgressComponent, PastProjectsComponent, ViewProjectComponent, ProjectsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

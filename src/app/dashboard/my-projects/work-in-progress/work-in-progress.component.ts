@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../dashboard.service';
 import { IProject } from 'src/app/shared/models/project';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-work-in-progress',

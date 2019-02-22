@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProject } from 'src/app/shared/models/project';
-import { DashboardService } from '../dashboard.service';
+import { DashboardService } from '../../dashboard.service';
+
 
 @Component({
   selector: 'app-past-projects',

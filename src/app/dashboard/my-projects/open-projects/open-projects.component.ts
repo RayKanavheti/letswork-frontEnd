@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IProject } from 'src/app/shared/models/project';
-import { DashboardService } from '../dashboard.service';
 import { CoreService } from 'src/app/core/core.service';
 import { ISkill } from 'src/app/shared/models/skill';
 import { UploadFile, NzMessageService } from 'ng-zorro-antd';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-open-projects',
