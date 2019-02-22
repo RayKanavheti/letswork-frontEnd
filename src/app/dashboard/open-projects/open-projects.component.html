@@ -3,15 +3,18 @@
 
         <nz-table class="responsive-table is-secondary mb-40" #basicTable [nzData]="dataSet">
             <tbody>
-                <tr>
-
-                    <th>PROJECT NAME</th>
-                    <th>BIDS</th>
-                    <th>AVERAGE BID</th>
-                    <th>BID END DATE</th>
-                    <th>ACTIONS</th>
+                <tr class="light-text">
+                    <th class="light-text">#</th>
+                    <th class="light-text">PROJECT NAME</th>
+                    <th class="light-text">BIDS</th>
+                    <th class="light-text">AVERAGE BID</th>
+                    <th class="light-text">BID END DATE</th>
+                    <th class="light-text">ACTIONS</th>
                 </tr>
                 <tr *ngFor="let data of basicTable.data; let i = index">
+                    <td data-th="#">
+                        {{i + 1}}
+                    </td>
                     <td data-th="PROJECT NAME">
                         {{data.Title}}
                     </td>
@@ -26,9 +29,11 @@
                     </td>
 
                     <td data-th="ACTIONS">
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">Delete</button>
-                        <button (click)="showEditModal(i)" class="button is-small btn-align accent-btn raised rounded btn-outlined">Edit</button>
-                        <button class="button is-small btn-align accent-btn raised rounded btn-outlined">View</button>
+                        <button class="button is-small btn-align info-btn raised rounded btn-outlined mr-10">View</button>
+                        <button (click)="showEditModal(i)" class="button is-small btn-align secondary-btn raised rounded btn-outlined mr-10">Edit</button>
+                        <button (click)="updateDocsModal(i)" class="button is-small btn-align warning-btn raised rounded btn-outlined mr-10">Update
+              documents</button>
+                        <button class="button is-small btn-align danger-btn raised rounded btn-outlined mr-10">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -119,5 +124,44 @@
         <span>Modal Footer: </span>
         <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
         <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Custom Submit</button>
+    </ng-template>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisible2" [nzTitle]="modalTitle2" [nzWidth]="width" [nzContent]="modalContent2" [nzFooter]="modalFooter2" (nzOnCancel)="handleCancel2()">
+    <ng-template #modalTitle2>
+        Update project Documents
+    </ng-template>
+
+    <ng-template #modalContent2>
+        <div *ngIf="editIndex !== undefined" class="padding-20">
+            <div class="columns">
+                <div class="column is-3" *ngFor="let item of dataSet[editIndex].ProjectFiles; let i = index">
+                    <div class="flex-card light-bordered hover-raised">
+
+                        <div class="card-body">
+                            <div class="content has-text-centered">
+                                <h2 class="no-margin title-bold">File {{i + 1}}</h2>
+                                <p class="pt-10"> <a href="http://www.{{item.Path}}" target="_blank">View</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <nz-upload [(nzFileList)]="fileList" style="width: 100%" [nzSize]="'large'" [nzBeforeUpload]="beforeUpload">
+                    <button nz-button>
+            <i nz-icon type="upload"></i><span>Select File</span>
+          </button>
+                </nz-upload>
+            </div>
+
+        </div>
+    </ng-template>
+
+    <ng-template #modalFooter2>
+        <span>Modal Footer: </span>
+        <button nz-button nzType="default" (click)="handleCancel2()">Custom Callback</button>
+        <button nz-button nzType="primary" (click)="handleOk2()" [nzLoading]="isConfirmLoading">Custom Submit</button>
+        <button nz-button nzType="primary" (click)="uploadFiles()">submit docs</button>
     </ng-template>
 </nz-modal>

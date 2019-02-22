@@ -26,7 +26,6 @@ export class Project {
     Title?: string;
     Description?: string;
     Duration?: string;
-    IsComplete?: boolean;
     Status?: string; // active or not
     Assisted?: boolean;
     ProjectType?: string; // fixed or hourly

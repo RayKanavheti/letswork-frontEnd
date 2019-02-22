@@ -3,6 +3,7 @@ import { IProject } from 'src/app/shared/models/project';
 import { DashboardService } from '../dashboard.service';
 import { CoreService } from 'src/app/core/core.service';
 import { ISkill } from 'src/app/shared/models/skill';
+import { UploadFile, NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-open-projects',
@@ -14,6 +15,7 @@ export class OpenProjectsComponent implements OnInit {
   dataSet: IProject[] = [];
   bids: number[] = [];
   isVisible = false;
+  isVisible2 = false;
   isConfirmLoading = false;
   listOfSelectedValue: ISkill[] = [];
   listOfSelectedValueLabel = [];
@@ -26,9 +28,11 @@ export class OpenProjectsComponent implements OnInit {
     width: '100%',
     textAlign: 'center'
   };
+  fileList: UploadFile[] = [];
+  uploading = false;
   formatterDollar = value => `$ ${value}`;
   parserDollar = value => value.replace('$ ', '');
-  constructor(private dashService: DashboardService, private coreService: CoreService) { }
+  constructor(private dashService: DashboardService, private coreService: CoreService, private msg: NzMessageService) { }
 
   ngOnInit() {
     this.getProjectByStatusnOwnerId();
@@ -81,7 +85,10 @@ export class OpenProjectsComponent implements OnInit {
       }
     }
   }
-
+  updateDocsModal(i: number): void {
+    this.editIndex = i;
+    this.isVisible2 = true;
+  }
   handleOk(): void {
     this.isConfirmLoading = true;
     setTimeout(() => {
@@ -92,6 +99,17 @@ export class OpenProjectsComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+  handleOk2(): void {
+    this.isConfirmLoading = true;
+    setTimeout(() => {
+      this.isVisible2 = false;
+      this.isConfirmLoading = false;
+    }, 3000);
+  }
+
+  handleCancel2(): void {
+    this.isVisible2 = false;
   }
 
   getAllSkills(): void {
@@ -133,11 +151,37 @@ export class OpenProjectsComponent implements OnInit {
     this.listOfSelectedValue = [];
     for (let i = 0; i < this.listOfSelectedValueLabel.length; i++) {
       for (let k = 0; k < this.listOfSkills.length; k++) {
-        if (this.listOfSelectedValueLabel[i] === this.listOfSkills[k].Title ) {
-            this.listOfSelectedValue.push(this.listOfSkills[k]);
+        if (this.listOfSelectedValueLabel[i] === this.listOfSkills[k].Title) {
+          this.listOfSelectedValue.push(this.listOfSkills[k]);
         }
       }
     }
-    console.log('full selected...', this.listOfSelectedValue);
+    this.dataSet[this.editIndex].Jobs = this.listOfSelectedValue;
+    this.dataSet[this.editIndex].ProjectType = this.selected2 === true ? 'hourly' : 'fixed';
+    console.log('full selected...', this.dataSet[this.editIndex]);
   }
+  beforeUpload = (file: UploadFile): boolean => {
+    this.fileList.push(file);
+    return false;
+  }
+  uploadFiles() {
+    const formData = new FormData();
+    // tslint:disable-next-line:no-any
+    this.fileList.forEach((file: any) => {
+      formData.append('files', file);
+    });
+    this.uploading = true;
+    this.coreService.UploadProjectFiles(formData, this.dataSet[this.editIndex].ID)
+      .subscribe(data => {
+        console.log('my response', data);
+        this.msg.create('success', 'File uploaded successfully');
+        this.uploading = false;
+      }, error => {
+        this.msg.create('error', 'File upload failed');
+        this.uploading = false;
+        console.log(error);
+      }
+      );
+  }
+
 }
