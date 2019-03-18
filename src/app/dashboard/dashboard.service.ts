@@ -44,6 +44,15 @@ GetProjectByStatus(OwnerId: number, Status: string): Observable<IProject[]> {
       retry(2), // retry a failed request up to 3 times
       catchError(this.handleError));
   }
+
+GetProjectByStatusOnly(Status: string): Observable<IProject[]> {
+
+  const url = `${this.BASE_URL}/api/projects_statusOnly/` + Status;
+  return this.httpClient.get<IProject[]>(url, this.httpOptions)
+  .pipe(
+    retry(2), // retry a failed request up to 3 times
+    catchError(this.handleError));
+}
   // Catching Errors
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

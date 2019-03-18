@@ -1,3 +1,47 @@
-<p>
-  projects works!
-</p>
+<div class="columns">
+    <div class="column is-4">
+        <div class="flex-card simple-shadow">
+            <div class="card-body">
+                <div class="content">
+                    <h2 class="no-margin">Card title</h2>
+                    <p class="pt-10">Lorem ipsum dolor sit amet, has vero libris melius ea, omnis velit comprehensam duo an, meis ornatus eam ad. Ius ut labores scaevola.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column is-8">
+        <div class="flex-card simple-shadow">
+            <div class="card-body">
+                <nz-list [nzDataSource]="dataSet" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination">
+                    <ng-template #item let-item>
+                        <nz-list-item [nzContent]="content" [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
+                            <ng-template #content>
+                                <h4>{{item.Description}}</h4>
+                            </ng-template>
+                            <ng-template #starAction><i nz-icon type="star-o" style="margin-right: 8px;"></i> 156</ng-template>
+                            <ng-template #likeAction><i nz-icon type="like-o" style="margin-right: 8px;"></i> 156</ng-template>
+                            <ng-template #msgAction><i nz-icon type="message" style="margin-right: 8px;"></i> 2</ng-template>
+                            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="desc">
+
+                                <ng-template #desc>
+                                    <h5><i nz-icon type="info-circle" theme="outline" style="margin-right: 8px;"></i>Status: <span class="success-text is-uppercase">{{item.Status}}</span> - {{item.Bids.length}} bids</h5>
+                                    <br>
+                                    <h5><i nz-icon type="tags" theme="outline" style="margin-right: 8px;"></i> <span *ngFor="let skill of item.Jobs" style="margin-right: 6px;">{{skill.Title}},</span></h5>
+                                </ng-template>
+                                <ng-template #nzTitle>
+                                    <h2><span class="dark-text" style="margin-right: 8px;"><i nz-icon type="project"></i></span><a href="#">{{item.Title}}</a></h2>
+                                </ng-template>
+                            </nz-list-item-meta>
+                            <ng-template #extra>
+                                <h2>${{item.Budget.minimum}} - ${{item.Budget.maximum}}</h2>
+                            </ng-template>
+                        </nz-list-item>
+                    </ng-template>
+                    <ng-template #pagination>
+                        <nz-pagination [nzPageIndex]="1" [nzTotal]="dataSet.length"></nz-pagination>
+                    </ng-template>
+                </nz-list>
+            </div>
+        </div>
+    </div>
+</div>
