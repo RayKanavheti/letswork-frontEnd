@@ -1,5 +1,4 @@
 import { IBid } from './bid';
-import { IProjectCategory } from './projectCat';
 import { ITask } from './task';
 import { ICommon } from './common';
 import { IProjectFile } from './projectFiles';

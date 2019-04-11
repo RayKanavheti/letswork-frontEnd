@@ -1,0 +1,112 @@
+<!-- Profile page wrapper -->
+<!-- <div class="profile-container"> -->
+<!-- Profile Sections -->
+<div class="container">
+    <div class="flex-card simple-shadow">
+        <div class="card-body">
+
+            <div class="columns">
+                <div class="column is-8">
+
+                    <table class="table has-text-centered" style="text-align: center">
+                        <thead>
+                            <tr>
+                                <th class="is-size-4" style="border-right: 1px solid #dbdbdb">Bids</th>
+                                <th class="is-size-4" style="border-right: 1px solid #dbdbdb">Average Bids</th>
+                                <th class="is-size-4">Project Budget</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                            <tr style="text-align: center">
+                                <td style="border-right: 1px solid #dbdbdb">
+                                    <h2 class="is-size-3 info-text"><span class="b-badge badge-outlined rounded is-primary">5</span></h2>
+                                </td>
+                                <td style="border-right: 1px solid #dbdbdb">
+                                    <h2 class="is-size-3 info-text">$ 6000</h2>
+                                </td>
+                                <td>
+                                    <h2 class="is-size-3 info-text">$ 12890 - $ 340000 </h2>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a class="button button-cta btn-outlined rounded primary-btn raised">Bid Project</a></p>
+                </div>
+                <div class="column is-4">
+                    <div class="is-pulled-right mr-20">
+                        <h2 class="warning-text is-size-4">Open</h2>
+                        <h2 class="info-text">7 days left</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="flex-card simple-shadow">
+        <div class="card-body">
+
+            <div class="columns">
+                <div class="column is-11">
+                    <h5 class="is-size-4">Project Description</h5>
+                    <p class="is-size-5 has-text-grey has-text-justified">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                        eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                        Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+                        Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus,
+                        sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam
+                        quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+                    <h5 class="is-size-4">Additional supporting documents</h5>
+                    <p class="is-size-5 has-text-grey">Docx.pdf</p>
+                    <h5 class="is-size-4">About the employer</h5>
+                    <p>
+                        <nz-rate [ngModel]="4" nzDisabled></nz-rate>
+                    </p>
+                    <p>
+                        <span class="tag squared is-outlined is-success">Verified <i class="fa fa-check fa-2x"></i></span>
+                    </p>
+                    <h5 class="is-size-4">Skills required</h5>
+                    <p class="is-size-5 has-text-grey"><i nz-icon type="tags" theme="outline" style="margin-right: 8px;"></i> <span *ngFor="let skill of projectDetail.Jobs" style="margin-right: 6px;">{{skill.Title}},</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-card simple-shadow">
+        <div class="card-body">
+            <div class="content">
+                <div class="columns">
+                    <div class="column is-12">
+                        <nz-page-header [nzTitle]="myTitle">
+                        </nz-page-header>
+                        <ng-template #myTitle>
+                            <h5 class="is-size-4 light-text">Freelancers bidding for the project</h5>
+                        </ng-template>
+                        <nz-list [nzDataSource]="data" [nzItemLayout]="'vertical'" [nzRenderItem]="item" [nzPagination]="pagination" [nzFooter]="footer">
+                            <ng-template #item let-item>
+                                <nz-list-item [nzContent]="item.content" [nzActions]="[starAction, likeAction, msgAction]" [nzExtra]="extra">
+                                    <ng-template #starAction><i nz-icon type="star-o" style="margin-right: 8px;"></i> 156</ng-template>
+                                    <ng-template #likeAction><i nz-icon type="like-o" style="margin-right: 8px;"></i> 156</ng-template>
+                                    <ng-template #msgAction><i nz-icon type="message" style="margin-right: 8px;"></i> 2</ng-template>
+                                    <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.description">
+                                        <ng-template #nzTitle><a href="{{ item.href }}">{{ item.title }}</a></ng-template>
+                                    </nz-list-item-meta>
+                                    <ng-template #extra>
+                                        <img width="272" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
+                                    </ng-template>
+                                </nz-list-item>
+                            </ng-template>
+                            <ng-template #footer>
+                                <div><b>ant design</b> footer part</div>
+                            </ng-template>
+                            <ng-template #pagination>
+                                <nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadData($event)"></nz-pagination>
+                            </ng-template>
+                        </nz-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Profile Sections -->
+<!-- </div> -->

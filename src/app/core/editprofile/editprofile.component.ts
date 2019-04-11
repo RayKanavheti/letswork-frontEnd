@@ -48,7 +48,6 @@ export class EditprofileComponent implements OnInit {
           }
           console.log(this.listOfSelectedValue);
         }
-      
 
         console.log('User Object', res);
       },
